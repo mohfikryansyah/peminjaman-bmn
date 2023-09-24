@@ -111,7 +111,7 @@
         <div class="text-center col-span-12">
             <h1
                 class="mb-4 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl text-white dark:text-white">
-                WEBSITE PEMINJAMAN BARANG MILIK NEGARA BPKHTL XV INDONESIA</h1>
+                WEBSITE PEMINJAMAN BARANG MILIK NEGARA BPKHTL XV GORONTALO</h1>
             <p class="max-w-2xl mx-auto mb-6 font-light text-gray-200 lg:mb-8 md:text-lg lg:text-xl">Masuk Untuk Melakukan Peminjaman Barang. Belum punya akun?</p>
 
             <a href="/register"
