@@ -4,7 +4,7 @@
 <div class="flex pt-16 overflow-hidden">
     @include('auth.partials.sidebar')
     <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64 -mt-2">
-        <main class="py-5 px-8">
+        <main class="p-5">
             @yield('content')
         </main>
     </div>

@@ -41,7 +41,7 @@
                     </div>
                     <input type="search" id="search" wire:model.live.debounce.500="search"
                         class="block p-2 w-[250px] pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Nama barang">
+                        placeholder="Nama/kode barang">
                 </div>
             </div>
         </div>
@@ -52,7 +52,16 @@
                     <thead class="text-xs text-white uppercase bg-slate-800">
                         <tr>
                             <th scope="col" class="px-6 py-3">
+                                No.
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Nama Barang
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kode Barang
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Satuan
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
@@ -64,9 +73,6 @@
                                         </svg></button>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Kode Barang
-                            </th>
                             @role('ADMIN')
                                 <th scope="col" class="px-6 py-3">
                                     Action
@@ -75,27 +81,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($barangs as $barang)
+                        @forelse ($barangs as $index => $barang)
                             <tr class="bg-white border-b">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $barang->nama }}
+                                <th scope="row" class="px-6 py-4">
+                                    {{ $barangs->firstItem() + $index }}
                                 </th>
-                                <td class="px-6 py-4">
-                                    {{ $barang->stok }}
+                                <td wire:key="{{ $barang->id }}" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
+                                    {{ $barang->nama }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $barang->kode_barang }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    {{ $barang->satuan }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $barang->stok }}
+                                </td>
                                 @role('ADMIN')
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <td class="px-6 py-4 flex">
+                                        {{-- <a href="/dashboard/barang/{{ $barang->id }}/edit"
+                                            class="font-medium flex-1 text-blue-600 dark:text-blue-500 hover:underline">Edit</a> --}}
+                                            @include('components.edit-barang-button')
+                                            
+                                            @include('components.modal-delete-barang')
                                     </td>
+                                    
                                 @endrole
                             </tr>
                         @empty
                             <tr class="bg-white border-b">
-                                <td colspan="4" class="px-6 py-4 text-center">
+                                <td colspan="6" class="px-6 py-4 text-center">
                                     Tidak ada Barang
                                 </td>
                             </tr>
@@ -103,6 +119,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ $barangs->links() }}
         @endrole
     {{-- </div> --}}
 </div>

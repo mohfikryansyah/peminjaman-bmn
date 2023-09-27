@@ -1,14 +1,15 @@
 @extends('auth.layouts.main')
 @section('content')
     <div class="max-w-screen-md bg-white text-gray-800 p-5 rounded-lg border shadow-md">
-        <h1 class="mb-5 text-xl font-semibold">Form Penambahan Barang</h1>
+        <h1 class="mb-5 text-xl font-semibold">Edit Barang</h1>
         <form method="POST" action="/dashboard/barang">
             @csrf
+            @method('put')
             <div class="mb-6">
                 <label for="nama" class="block mb-2 text-sm font-medium">Nama Barang</label>
                 <input type="text" id="nama" name="nama"
                     class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('nama') border-red-600 @enderror"
-                    placeholder="Laptop" required value="{{ old('nama') }}">
+                    placeholder="Laptop" required value="{{ old('nama', $barang->nama) }}">
                 @error('nama')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
                 @enderror
@@ -18,7 +19,7 @@
                     Stok</label>
                 <input type="number" id="stok" name="stok"
                     class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('stok') border-red-600 @enderror"
-                    required value="{{ old('stok') }}">
+                    required value="{{ old('stok', $barang->stok) }}">
                 @error('stok')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
                 @enderror
@@ -28,7 +29,7 @@
                     Kode Barang</label>
                 <input type="text" id="kode_barang" name="kode_barang"
                     class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('kode_barang') border-red-600 @enderror"
-                    required value="{{ old('kode_barang') }}">
+                    required value="{{ old('kode_barang', $barang->kode_barang) }}">
                     @error('kode_barang')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
                 @enderror
@@ -38,7 +39,7 @@
                     Satuan</label>
                 <input type="text" id="satuan" name="satuan"
                     class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('satuan') border-red-600 @enderror"
-                    required value="{{ old('satuan') }}">
+                    required value="{{ old('satuan', $barang->satuan) }}">
                     @error('satuan')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
                 @enderror

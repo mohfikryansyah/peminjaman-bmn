@@ -32,7 +32,8 @@ class BarangController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required',
             'stok' => 'required',
-            'kode_barang' => 'required',
+            'kode_barang' => 'required|unique:barangs',
+            'satuan' => 'required',
         ]);
 
         Barang::create($validatedData);
@@ -44,7 +45,7 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        //
+        dd($barang);
     }
 
     /**
@@ -52,7 +53,9 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('auth.edit-barang', [
+            'barang' => $barang
+        ]);
     }
 
     /**
@@ -60,7 +63,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'stok' => 'required',
+            'kode_barang' => 'required|unique',
+            'satuan' => 'required',
+        ]);
+
+        Barang::where('id', $barang->id)->update($validatedData);
+        return redirect('/dashboard/barang')->with('BARANG_STORED', 'Barang berhasil ditambahkan');
     }
 
     /**
@@ -68,6 +79,8 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        // dd($barang);
+        Barang::destroy($barang->id);
+        return redirect()->back();
     }
 }

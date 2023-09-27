@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth', 'role:ADMIN')->group(function () {
+    Route::get('/dashboard/daftar-peminjam/details/{peminjam}', [PeminjamController::class, 'show'])->name('pinjam.show');
     Route::get('/dashboard/daftar-peminjam', [PeminjamController::class, 'daftarPeminjam'])->name('pinjam.daftar');
     Route::put('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
     Route::get('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');

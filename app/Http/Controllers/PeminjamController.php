@@ -6,92 +6,129 @@ use App\Models\Barang;
 use App\Models\Peminjam;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use App\Mail\InfoPengembalian;
+use Illuminate\Support\Facades\Mail;
 
 class PeminjamController extends Controller
 {
-
-    public $percobaan = [
-        [
-            'id' => 1,
-            'nama' => 'Laptop'
-        ],
-        [
-            'id' => 2,
-            'nama' => 'Tablet'
-        ],
-        [
-            'id' => 3,
-            'nama' => 'Komputer'
-        ]
-    ];
-
-
     public function index()
     {
         return view('auth.peminjam.peminjaman', [
             'barangs' => Barang::all(),
-            'percobaan' => $this->percobaan
         ]);
+    }
+
+    public function show(Peminjam $peminjam)
+    {
+        return json_encode($peminjam);
+    }
+
+    public function hitungSelisihAllData()
+    {
+        $allPeminjam = Peminjam::all();
+        foreach ($allPeminjam as $peminjam) {
+            $selisihHari = $peminjam->hitungSelisihTanggal();
+
+            if ($selisihHari <= 3 && $peminjam->status == 'Disetujui') {
+                $infoMail = [
+                    'title' => 'Halo, ' . $peminjam->nama,
+                    'barang' => $peminjam->barang,
+                    'selisih' => $selisihHari,
+                ];
+
+                $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
+
+                if(!Cache::has($cacheMail)){
+                    mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
+                    Cache::put($cacheMail, true, now()->endOfDay());
+                }
+            }
+        }
     }
 
     public function peminjaman(Request $request)
     {
         $request->validate([
             'nama' => 'required',
+            'nip' => 'required|digits:18',
+            'pangkat' => 'required',
+            'seksi' => 'required',
+            'namaKasie' => 'required',
+            'nipKasie' => 'required|numeric',
+            'noSPT' => 'required|numeric',
             'barang' => 'required',
             'tgl_pengembalian' => 'required',
+            'suratImage' => 'required|image|file|max:1024',
         ]);
 
         $validatedPinjamBarang = [
             'nama' => ucwords($request->input('nama')),
+            'nip' => $request->input('nip'),
+            'pangkat' => ucwords($request->input('pangkat')),
+            'seksi' => ucwords($request->input('seksi')),
+            'namaKasie' => ucwords($request->input('namaKasie')),
+            'nipKasie' => $request->input('nipKasie'),
+            'noSPT' => $request->input('noSPT'),
             'barang' => ucwords($request->input('barang')),
-            'tgl_pengembalian' => $request->input('tgl_pengembalian')
+            'tgl_pengembalian' => $request->input('tgl_pengembalian'),
         ];
-        
-        $validatedPinjamBarang['user_id'] = auth()->user()->id;
-        $validatedPinjamBarang['status'] = 'Menunggu';
-        $validatedPinjamBarang['tgl_pinjam'] = Carbon::today();
 
+        $validatedPinjamBarang['suratImage'] = $request->file('suratImage')->store('surat-images');
+        $validatedPinjamBarang['user_id'] = auth()->user()->id;
+        $validatedPinjamBarang['email'] = auth()->user()->email;
+        $validatedPinjamBarang['tgl_pinjam'] = Carbon::today();
+        $validatedPinjamBarang['status'] = 'Menunggu';
+
+        // dd($validatedPinjamBarang);
         Peminjam::create($validatedPinjamBarang);
 
         return redirect('dashboard/piminjaman-barang')->with('PINJAM_STORED', 'Menunggu Konfirmasi Peminjaman Barang');
     }
 
-    public function daftarPeminjam ()
+    public function daftarPeminjam()
     {
+        $this->hitungSelisihAllData();
+
         return view('auth.daftar-peminjam', [
-             'peminjams' => Peminjam::all()
+            'peminjams' => Peminjam::all(),
         ]);
     }
-    
+
     public function konfirmasiPeminjam(Request $request, $id)
-    {   
+    {
         $validatedPinjamBarang = $request->validate([
-            'kode_barang' => 'required'
+            'kode_barang' => 'required',
         ]);
         $validatedPinjamBarang['status'] = 'Disetujui';
 
         $cekKodeBarang = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang'])->first();
 
         $confirm = Peminjam::findOrFail($id);
-        if($cekKodeBarang)
-        {
-            $confirm->update($validatedPinjamBarang);
+
+        if (!$cekKodeBarang) {
+            return redirect()
+                ->back()
+                ->with('error', 'Kode barang tidak ditemukan!');
+        } elseif ($cekKodeBarang['stok'] < 1) {
+            return redirect()
+                ->back()
+                ->with('error', 'Stok barang ' . $cekKodeBarang['nama'] . ' dengan kode barang ' . $cekKodeBarang['kode_barang'] . ' habis');
         } else {
-            return redirect()->back()->with('error', 'Kode barang tidak ditemukan!');
+            $confirm->update($validatedPinjamBarang);
         }
-
-
 
         $stok = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang'])->first();
         $stok->stok -= 1;
         $stok->save();
 
-        return redirect()->back()->with('confirmSuccess', 'Success');
+        return redirect()
+            ->back()
+            ->with('confirmSuccess', 'Success');
     }
 
-    public function barangBerkurang() {
-
+    public function barangBerkurang()
+    {
     }
 
     public function selesai($id)
@@ -101,12 +138,14 @@ class PeminjamController extends Controller
 
         // dd($stok->kode_barang);
 
-        $selesai->status = "Dikembalikan";
+        $selesai->status = 'Dikembalikan';
         $selesai->save();
-        
+
         $stok->stok += 1;
         $stok->save();
 
-        return redirect()->back()->with('selesaiSuccess', 'Barang telah dikembalikan');
+        return redirect()
+            ->back()
+            ->with('selesaiSuccess', 'Barang telah dikembalikan');
     }
 }
