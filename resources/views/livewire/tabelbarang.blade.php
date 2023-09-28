@@ -25,10 +25,10 @@
         </div>
     @endif
     {{-- <div class="bg-gray-100 rounded-lg shadow-md w-full px-5 py-4"> --}}
-        <div class="flex w-full justify-between items-center mb-5">
-            <h1 class="text-2xl font-bold text-slate-800 uppercase">Daftar Barang Milik Negara</h1>
-            <div class="flex-1 border mx-5"></div>
-            <div class="mb-0">
+        <div class="flex md:flex-row flex-col lg:w-full lg:justify-between md:items-center mb-5">
+            <h1 class="text-xl md:text-2xl font-bold text-slate-800 uppercase">Daftar Barang Milik Negara</h1>
+            <div class="flex-1 md:border mx-5"></div>
+            <div class="mb-0 md:mt-0 mt-2">
                 <label for="search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
