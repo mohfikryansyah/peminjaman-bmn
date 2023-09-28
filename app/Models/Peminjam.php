@@ -11,6 +11,7 @@ class Peminjam extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $hidden = ['kode_barang'];
 
     public function hitungSelisihTanggal()
     {

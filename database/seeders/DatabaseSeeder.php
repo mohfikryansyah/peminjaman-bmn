@@ -303,6 +303,203 @@ class DatabaseSeeder extends Seeder
             'kode_barang' => '3100201013',
             'satuan' => 'Buah'
         ]);
-        
+        Barang::create([
+            'nama' => 'Scanner (Peralatan Mini Komputer)',
+            'stok' => '0',
+            'kode_barang' => '3100202010',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Printer (Peralatan Personal Komputer)',
+            'stok' => '34',
+            'kode_barang' => '3100203003',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Scanner (Peralatan Personal Komputer)',
+            'stok' => '4',
+            'kode_barang' => '3100203004',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Plotter (Peralatan Personal Komputer)',
+            'stok' => '2',
+            'kode_barang' => '3100203005',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'External/ Portable Hardisk',
+            'stok' => '1',
+            'kode_barang' => '3100203017',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Baju Pengaman Lainnya',
+            'stok' => '1',
+            'kode_barang' => '3150201999',
+            'satuan' => 'Dummy'
+        ]);
+        Barang::create([
+            'nama' => 'Alat Pelindung Lainnya',
+            'stok' => '1',
+            'kode_barang' => '3150299999',
+            'satuan' => 'Dummy'
+        ]);
+        Barang::create([
+            'nama' => 'Distance Measuring Equipmnet (DME)',
+            'stok' => '2',
+            'kode_barang' => '3150402003',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Shredder',
+            'stok' => '0',
+            'kode_barang' => '3170121006',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Battery Charge',
+            'stok' => '1',
+            'kode_barang' => '3030103001',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Alat Pengukur Garis Tengah',
+            'stok' => '0',
+            'kode_barang' => '3030309004',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Alat Ukur Lainnya',
+            'stok' => '0',
+            'kode_barang' => '3030309999',
+            'satuan' => 'Dummy'
+        ]);
+        Barang::create([
+            'nama' => 'Mesin Ketik Manual Portable (11-13 Inci)',
+            'stok' => '0',
+            'kode_barang' => '3050101001',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Mesin Ketik Elektronik/Selektrik',
+            'stok' => '0',
+            'kode_barang' => '3050101008',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Lemari Besi/Metal',
+            'stok' => '0',
+            'kode_barang' => '3050104001',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Lemari Display',
+            'stok' => '0',
+            'kode_barang' => '3050104020',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'White Board',
+            'stok' => '2',
+            'kode_barang' => '3050105010',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'LCD Projector/Infocus',
+            'stok' => '1',
+            'kode_barang' => '3050105048',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Kabel',
+            'stok' => '6',
+            'kode_barang' => '3050206071',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Intercom Unit',
+            'stok' => '4',
+            'kode_barang' => '3060101031',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Uninterruptible Power Supply (UPS)',
+            'stok' => '0',
+            'kode_barang' => '3060101048',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Theodolite (Peralatan Studio Pemetaan/peralatan Ukur Tanah)',
+            'stok' => '1',
+            'kode_barang' => '3060105017',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Kompas Geologi',
+            'stok' => '0',
+            'kode_barang' => '3060105023',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Clinometer',
+            'stok' => '0',
+            'kode_barang' => '3060105024',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Altimeter (Peralatan Studio Pemetaan/peralatan Ukur Tanah)',
+            'stok' => '0',
+            'kode_barang' => '3060105025',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'GPS Receiver',
+            'stok' => '5',
+            'kode_barang' => '3060105038',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Kamera Udara',
+            'stok' => '1',
+            'kode_barang' => '3060105047',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Pesawat Telephone',
+            'stok' => '2',
+            'kode_barang' => '3060201003',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Handy Talky (HT)',
+            'stok' => '1',
+            'kode_barang' => '3060201006',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'UPS 15 KVA for HUB Station',
+            'stok' => '0',
+            'kode_barang' => '3060210011',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Spiegel Relascope',
+            'stok' => '0',
+            'kode_barang' => '3080146014',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'External/ Portable Hardisk',
+            'stok' => '0',
+            'kode_barang' => '3100203017',
+            'satuan' => 'Buah'
+        ]);
+        Barang::create([
+            'nama' => 'Shredder',
+            'stok' => '0',
+            'kode_barang' => '3170121006',
+            'satuan' => 'Buah'
+        ]);        
     }
 }

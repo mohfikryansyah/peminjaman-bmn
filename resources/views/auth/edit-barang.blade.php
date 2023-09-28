@@ -2,7 +2,7 @@
 @section('content')
     <div class="max-w-screen-md bg-white text-gray-800 p-5 rounded-lg border shadow-md">
         <h1 class="mb-5 text-xl font-semibold">Edit Barang</h1>
-        <form method="POST" action="/dashboard/barang">
+        <form method="POST" action="/dashboard/barang/{{ $barang->id }}">
             @csrf
             @method('put')
             <div class="mb-6">

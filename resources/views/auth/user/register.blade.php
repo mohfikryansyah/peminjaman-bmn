@@ -2,9 +2,10 @@
 {{-- @section('content') --}}
 <main class=" h-[100vh] bg-gray-100">
 <div class="flex flex-col items-center justify-center px-6 mx-auto h-screen">
-    <a href="" class="flex items-center justify-center mb-8 text-2xl font-semibold lg:mb-10">
+    <a href="" class="flex items-center justify-center mb-8 text-2xl font-bold lg:mb-10">
         {{-- <img src="/images/logo.svg" class="mr-4 h-11" alt="FlowBite Logo"> --}}
-        <span>LARAVEL</span>  
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg/900px-Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg.png"
+                        class="h-16 mr-4" alt="BPKHTL" /> 
     </a>
     <!-- Card -->
     <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
@@ -14,8 +15,8 @@
         <form class="mt-8 space-y-6" method="POST" action="{{ route('register') }}">
             @csrf
             <div>
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="name@company.com" :value="old('name')" autofocus autocomplete="name" required>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="Bill Gates" :value="old('name')" autofocus autocomplete="name" required>
             </div>
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>

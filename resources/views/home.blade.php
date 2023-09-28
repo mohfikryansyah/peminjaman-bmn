@@ -1,19 +1,50 @@
 @extends('master.layout.main')
 
 @section('content')
-<header class="w-full lg:bg-transparent bg-green-800 absolute top-0 left-0">
-    <nav class="z-20 top-0 left-0">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://bpkhtl15-gorontalo.id/" class="flex ml-2 md:mr-24">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg/900px-Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg.png" class="h-8 mr-3"
-                    alt="FlowBite Logo" />
-                <span
-                    class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">BPKHTL-XV</span>
-            </a>
-            <div class="flex md:order-2">
-                <a href="/login"
-                    class="text-white outline-1 outline hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">LOGIN</a>
-                {{-- <button data-collapse-toggle="navbar-sticky" type="button"
+    <header class="w-full lg:bg-transparent bg-green-800 absolute top-0 left-0">
+        <nav class="z-20 top-0 left-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="https://bpkhtl15-gorontalo.id/" class="flex ml-2 md:mr-24">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg/900px-Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg.png"
+                        class="h-8 mr-3" alt="FlowBite Logo" />
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">BPKHTL-XV</span>
+                </a>
+                <div class="flex md:order-2">
+                    @auth
+
+                        <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"
+                            class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                            type="button">Welcome, {{ auth()->user()->name }}<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 4 4 4-4" />
+                            </svg></button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdownInformation"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                <div>{{ auth()->user()->name }}</div>
+                                <div class="font-medium truncate">{{ auth()->user()->email }}</div>
+                            </div>
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownInformationButton">
+                                <li>
+                                    <a href="{{ route('dashboard') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    <button class="block w-full text-left px-4 py-2 hover:bg-gray-100 ">Logout</button>
+                                    </form>
+                                </li>
+                        </div>
+                    @else
+                        <a href="/login"
+                            class="text-white outline-1 outline hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">LOGIN</a>
+                    @endauth
+                    {{-- <button data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-sticky" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
@@ -23,11 +54,11 @@
                             d="M1 1h15M1 7h15M1 13h15" />
                     </svg>
                 </button> --}}
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 lg:-ml-44 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-                    {{-- <li>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul
+                        class="flex flex-col p-4 md:p-0 mt-4 lg:-ml-44 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                        {{-- <li>
                         <a href="#" class="block py-2 pl-3 pr-4 text-white md:p-0">Home</a>
                     </li>
                     <li>
@@ -46,10 +77,10 @@
                         <a href="#" class="block py-2 pl-3 pr-4 text-white md:p-0">Kuliner</a>
                     </li> --}}
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-        {{-- <div id="mega-menu-full-dropdown"
+            {{-- <div id="mega-menu-full-dropdown"
             class="mt-1 border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600 hidden">
             <div
                 class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6">
@@ -101,29 +132,26 @@
                 </ul>
             </div>
         </div> --}}
-    </nav>
+        </nav>
 
-</header>
+    </header>
 
-<section
-    class="lg:pt-[32vh] pt-[32vh] h-[100vh] bg-[url(https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)] bg-blend-multiply bg-gray-700">
-    <div class="grid max-w-screen-lg px-4 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
-        <div class="text-center col-span-12">
-            <h1
-                class="mb-4 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl text-white dark:text-white">
-                WEBSITE PEMINJAMAN BARANG MILIK NEGARA BPKHTL XV GORONTALO</h1>
-            <p class="max-w-2xl mx-auto mb-6 font-light text-gray-200 lg:mb-8 md:text-lg lg:text-xl">Masuk Untuk Melakukan Peminjaman Barang. Belum punya akun?</p>
+    <section
+        class="lg:pt-[32vh] pt-[32vh] h-[100vh] bg-[url(https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)] bg-blend-multiply bg-gray-700">
+        <div class="grid max-w-screen-lg px-4 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+            <div class="text-center col-span-12">
+                <h1 class="mb-4 text-3xl font-bold tracking-wider md:text-4xl lg:text-5xl text-white dark:text-white">
+                    WEBSITE PEMINJAMAN BARANG MILIK NEGARA BPKHTL XV GORONTALO</h1>
+                <p class="max-w-2xl mx-auto mb-6 font-light text-gray-200 lg:mb-8 md:text-lg lg:text-xl">Masuk Untuk
+                    Melakukan Peminjaman Barang. Belum punya akun?</p>
 
-            <a href="/register"
-                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-lg px-5 py-3 text-center w-40">Register</a>
+                <a href="/register"
+                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-lg px-5 py-3 text-center w-40 uppercase font-bold">Register</a>
+            </div>
         </div>
-    </div>
-</section>
-<!-- End block -->
-<!-- Start block -->
-<!-- End block -->
+    </section>
 
-{{-- <section class="bg-white">
+    {{-- <section class="bg-white">
     <div class="max-w-screen-xl px-6 py-8 mx-auto lg:py-24 lg:px-6">
         <div class="w-full lg:-mt-40 -mt-[200px] h-auto p-4 bg-white border rounded-lg shadow-md sm:p-8">
             <div class="flex lg:flex-row flex-col">
@@ -227,7 +255,7 @@
 
 
 
-{{-- <footer class="bg-white dark:bg-gray-800">
+    {{-- <footer class="bg-white dark:bg-gray-800">
     <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
         <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
             <div>

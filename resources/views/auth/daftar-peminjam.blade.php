@@ -2,7 +2,7 @@
 @section('content')
     <div>
 
-        <div class="mb-8">
+        {{-- <div class="mb-8">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
@@ -30,11 +30,11 @@
                     </li>
                 </ol>
             </nav>
-        </div>
+        </div> --}}
 
         <div class="mb-5">
-            <h1 class="text-2xl font-semibold uppercase">Daftar Peminjam Barang Milik Negara</h1>
-            
+            <h1 class="sm:text-2xl text-xs font-semibold uppercase">Daftar Peminjam Barang Milik Negara</h1>
+
         </div>
 
         @if (Session::get('BARANG_STORED'))
@@ -113,9 +113,13 @@
             </div>
         @endif
 
-        <a href="/dashboard/export/daftar-peminjam"
+        <a href="/dashboard/daftar-peminjam/export"
             class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"/></svg>
+            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
+                viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                    d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z" />
+            </svg>
             Export
         </a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
@@ -153,8 +157,9 @@
                 <tbody>
                     @forelse ($peminjams as $peminjam)
                         <tr class="bg-white border-b">
+                            
                             <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
-                                {{ $peminjam->nama }}
+                                <a class="hover:text-emerald-500" href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->nama }}</a>
                             </th>
                             <td class="px-6 py-4">
                                 {{ $peminjam->barang }}
@@ -172,9 +177,10 @@
                             @if ($peminjam->status == 'Menunggu')
                                 <td class="px-6 whitespace-nowrap py-4">
                                     <span
-                                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ $peminjam->status }}</span>
+                                        class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ $peminjam->status }}</span>
                                 </td>
                                 <td class="px-6 whitespace-nowrap py-4">
+                                    {{-- KONFIRMASI PEMINJAM --}}
                                     <form method="POST" action="{{ route('pinjam.confirm', $peminjam->id) }}">
                                         @csrf
                                         @method('put')
@@ -185,9 +191,32 @@
                                         @enderror>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <button type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Konfirmasi</button>
-                                    </form>
+                                    <div class="flex">
+                                        <button type="submit"
+                                            class="p-2 mr-1 text-xs font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300">
+                                            <svg class="w-3 h-3 text-white" xmlns="http://www.w3.org/2000/svg"
+                                                height="1em" fill="currentColor"
+                                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                <path
+                                                    d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                            </svg>
+                                        </button>
+                                        </form>
+                                        {{-- END KONFIRMASI PEMINJAM --}}
+
+                                        {{-- TOLAK PEMINJAM --}}
+
+                                        <a href="{{ route('pinjam.tolak', $peminjam->id) }}"
+                                            class="p-2 text-xs font-medium text-center inline-flex items-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-800 focus:ring-2 focus:outline-none focus:ring-yellow-300">
+                                            <svg class="w-3 h-3 text-white" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg" height="1em"
+                                                viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                                <path
+                                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                                            </svg>
+                                        </a>
+                                        {{-- END TOLAK PEMINJAM --}}
+                                    </div>
                                 </td>
                             @elseif ($peminjam->status == 'Disetujui')
                                 <td class="px-6 whitespace-nowrap py-4">
@@ -201,20 +230,24 @@
                                     <a href="{{ route('pinjam.selesai', $peminjam->id) }}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Selesai</a>
                                 </td>
-                            @else
+                            @elseif ($peminjam->status == 'Ditolak')
                                 <td class="px-6 whitespace-nowrap py-4">
                                     <span
-                                        class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ $peminjam->status }}</span>
+                                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ $peminjam->status }}</span>
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $peminjam->kode_barang }}
                                 </td>
+                            @else
                                 <td class="px-6 whitespace-nowrap py-4">
-                                    <a href="{{ route('pinjam.show', $peminjam->id) }}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat
-                                        detail</a>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ $peminjam->status }}</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $peminjam->kode_barang }}
                                 </td>
                             @endif
+                            
                         </tr>
                     @empty
                         <tr class="bg-white border-b">

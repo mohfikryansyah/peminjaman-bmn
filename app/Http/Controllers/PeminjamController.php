@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Peminjam;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use App\Mail\InfoPengembalian;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
+use App\Exports\PeminjamExport;
 
 class PeminjamController extends Controller
 {
@@ -21,7 +23,14 @@ class PeminjamController extends Controller
 
     public function show(Peminjam $peminjam)
     {
-        return json_encode($peminjam);
+        return view('auth.peminjam.show-details-peminjam', [
+            'peminjam' => $peminjam
+        ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new PeminjamExport(), 'peminjam.xlsx');
     }
 
     public function hitungSelisihAllData()
@@ -39,7 +48,7 @@ class PeminjamController extends Controller
 
                 $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
 
-                if(!Cache::has($cacheMail)){
+                if (!Cache::has($cacheMail)) {
                     mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
                     Cache::put($cacheMail, true, now()->endOfDay());
                 }
@@ -59,7 +68,7 @@ class PeminjamController extends Controller
             'noSPT' => 'required|numeric',
             'barang' => 'required',
             'tgl_pengembalian' => 'required',
-            'suratImage' => 'required|image|file|max:1024',
+            'suratImage' => 'required|image|file|max:2048',
         ]);
 
         $validatedPinjamBarang = [
@@ -127,16 +136,17 @@ class PeminjamController extends Controller
             ->with('confirmSuccess', 'Success');
     }
 
-    public function barangBerkurang()
+    public function tolakPeminjam($id)
     {
+        $tolak = Peminjam::findOrFail($id);
+        $tolak->status = 'Ditolak';
+        $tolak->save();
     }
 
     public function selesai($id)
     {
         $selesai = Peminjam::findOrFail($id);
         $stok = Barang::where('kode_barang', $selesai->kode_barang)->first();
-
-        // dd($stok->kode_barang);
 
         $selesai->status = 'Dikembalikan';
         $selesai->save();

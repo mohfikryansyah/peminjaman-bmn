@@ -4,6 +4,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserPinjamController;
+use App\Models\Barang;
+use App\Models\Peminjam;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('auth.dashboard');
+    return view('auth.dashboard', [
+        'totalBarang' => Barang::all(),
+        'totalBarangDipinjam' => Peminjam::where('status', 'like', "%Disetujui%")->get(),
+        'totalBarangSelesaiDipinjam' => Peminjam::where('status', 'like', "%Dikembalikan%")->get(),
+        'totalBarangMenunggu' => Peminjam::where('status', 'like', "%Menunggu%")->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/dashboard/barang', BarangController::class)->middleware('auth');
@@ -36,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard/piminjaman-barang-user', [UserPinjamController::class, 'index'])->name('user.index');
 });
 
@@ -47,9 +54,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('/dashboard/daftar-peminjam/details/{peminjam}', [PeminjamController::class, 'show'])->name('pinjam.show');
+    Route::get('/dashboard/daftar-peminjam/export', [PeminjamController::class, 'export'])->name('pinjam.export');
     Route::get('/dashboard/daftar-peminjam', [PeminjamController::class, 'daftarPeminjam'])->name('pinjam.daftar');
     Route::put('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
+    Route::get('/dashboard/daftar-peminjam/tolak/{id}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
     Route::get('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

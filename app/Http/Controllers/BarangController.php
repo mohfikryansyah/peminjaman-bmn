@@ -22,7 +22,7 @@ class BarangController extends Controller
     {
         return view('auth.add-barang');
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -63,15 +63,21 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'nama' => 'required',
             'stok' => 'required',
-            'kode_barang' => 'required|unique',
             'satuan' => 'required',
-        ]);
+        ];
+
+        if ($request->kode_barang != $barang->kode_barang) {
+            $rules['kode_barang'] = 'required|unique:barangs';
+        }
+
+        $validatedData = $request->validate($rules);
+
 
         Barang::where('id', $barang->id)->update($validatedData);
-        return redirect('/dashboard/barang')->with('BARANG_STORED', 'Barang berhasil ditambahkan');
+        return redirect('/dashboard/barang')->with('BARANG_STORED', 'Data barang berhasil diubah');
     }
 
     /**
@@ -79,7 +85,6 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        // dd($barang);
         Barang::destroy($barang->id);
         return redirect()->back();
     }
