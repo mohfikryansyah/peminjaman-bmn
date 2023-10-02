@@ -114,7 +114,7 @@
         @endif
 
         <a href="/dashboard/daftar-peminjam/export"
-            class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-slate-800 rounded-lg hover:bg-blue-800">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
                 viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
@@ -150,6 +150,9 @@
                             Kode Barang
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            NUP/Seri
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -157,9 +160,10 @@
                 <tbody>
                     @forelse ($peminjams as $peminjam)
                         <tr class="bg-white border-b">
-                            
+
                             <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
-                                <a class="hover:text-emerald-500" href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->nama }}</a>
+                                <a class="hover:text-emerald-500"
+                                    href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->nama }}</a>
                             </th>
                             <td class="px-6 py-4">
                                 {{ $peminjam->barang }}
@@ -189,6 +193,17 @@
                                             @error('kode_barang')
                                             placeholder="Tidak boleh kosong"
                                         @enderror>
+
+                                </td>
+                                <td class="px-6 py-4">
+
+                                    <input type="text" id="seriNUP" name="seriNUP"
+                                        class="p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs @error('seriNUP') border-red-300 placeholder-red-700 @enderror"
+                                        @error('seriNUP')
+                                            placeholder="Tidak boleh kosong"
+                                        @enderror>
+
+
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex">
@@ -205,7 +220,6 @@
                                         {{-- END KONFIRMASI PEMINJAM --}}
 
                                         {{-- TOLAK PEMINJAM --}}
-
                                         <a href="{{ route('pinjam.tolak', $peminjam->id) }}"
                                             class="p-2 text-xs font-medium text-center inline-flex items-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-800 focus:ring-2 focus:outline-none focus:ring-yellow-300">
                                             <svg class="w-3 h-3 text-white" fill="currentColor"
@@ -227,6 +241,9 @@
                                     {{ $peminjam->kode_barang }}
                                 </td>
                                 <td class="px-6 py-4">
+                                    {{ $peminjam->seriNUP }}
+                                </td>
+                                <td class="px-6 py-4">
                                     <a href="{{ route('pinjam.selesai', $peminjam->id) }}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Selesai</a>
                                 </td>
@@ -238,6 +255,12 @@
                                 <td class="px-6 py-4">
                                     {{ $peminjam->kode_barang }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    {{ $peminjam->seriNUP }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    &nbsp;
+                                </td>
                             @else
                                 <td class="px-6 whitespace-nowrap py-4">
                                     <span
@@ -246,12 +269,18 @@
                                 <td class="px-6 py-4">
                                     {{ $peminjam->kode_barang }}
                                 </td>
+                                <td class="px-6 py-4">
+                                    {{ $peminjam->seriNUP }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    &nbsp;
+                                </td>
                             @endif
-                            
+
                         </tr>
                     @empty
                         <tr class="bg-white border-b">
-                            <td colspan="7" class="px-4 py-6 text-center">
+                            <td colspan="8" class="px-4 py-6 text-center">
                                 Belum ada Permintaan
                             </td>
                         </tr>

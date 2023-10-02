@@ -7,8 +7,7 @@
             <div class="mb-6">
                 <label for="nama" class="block mb-2 text-sm font-medium">Nama Barang</label>
                 <input type="text" id="nama" name="nama"
-                    class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('nama') border-red-600 @enderror"
-                    placeholder="Laptop" required value="{{ old('nama') }}">
+                    class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('nama') border-red-600 @enderror" required value="{{ old('nama') }}">
                 @error('nama')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
                 @enderror

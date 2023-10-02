@@ -1,13 +1,15 @@
 @include('master.app')
 @include('auth.partials.navbar')
+@include('auth.partials.sidebar')
 
-<div class="flex pt-16 overflow-hidden">
-    @include('auth.partials.sidebar')
-    <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64 -mt-2">
-        <main class="p-5">
+<div class="flex pt-16 overflow-hidden bg-pallete-300">
+    <div id="main-content" class="relative w-full h-full overflow-y-auto lg:ml-64">
+        <main class="p-5 rounded-tr-xl rounded-tl-xl bg-white">
             @yield('content')
         </main>
     </div>
 </div>
+{{-- <div class="p-4 sm:ml-64">
 
+</div> --}}
 @include('auth.partials.footer')

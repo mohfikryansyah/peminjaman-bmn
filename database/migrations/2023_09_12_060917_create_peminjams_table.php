@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('suratImage');
             $table->string('kode_barang')->nullable();
+            $table->string('seriNUP')->nullable();
             $table->timestamps();
         });
     }

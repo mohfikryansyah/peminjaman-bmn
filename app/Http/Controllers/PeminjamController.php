@@ -14,10 +14,17 @@ use App\Exports\PeminjamExport;
 
 class PeminjamController extends Controller
 {
+    private $seksi = [
+        'A',
+        'B',
+        'C',
+    ];
+    
     public function index()
     {
         return view('auth.peminjam.peminjaman', [
             'barangs' => Barang::all(),
+            'seksi' => $this->seksi
         ]);
     }
 
@@ -97,7 +104,7 @@ class PeminjamController extends Controller
 
     public function daftarPeminjam()
     {
-        $this->hitungSelisihAllData();
+        // $this->hitungSelisihAllData();
 
         return view('auth.daftar-peminjam', [
             'peminjams' => Peminjam::all(),
@@ -108,6 +115,7 @@ class PeminjamController extends Controller
     {
         $validatedPinjamBarang = $request->validate([
             'kode_barang' => 'required',
+            'seriNUP' => 'required',
         ]);
         $validatedPinjamBarang['status'] = 'Disetujui';
 
