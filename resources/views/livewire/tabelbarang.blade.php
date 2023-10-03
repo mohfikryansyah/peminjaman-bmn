@@ -45,7 +45,7 @@
     </div>
     @role('ADMIN')
 
-        <div class="relative overflow-x-auto shadow-lg sm:rounded-lg mb-5">
+        <div class="relative overflow-x-auto shadow-lg rounded-lg mb-5">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-white uppercase bg-slate-800">
                     <tr>

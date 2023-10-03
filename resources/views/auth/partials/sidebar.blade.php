@@ -1,14 +1,13 @@
 <aside id="logo-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-pallete-300 lg:translate-x-0"
     aria-label="Sidebar">
-    <div class="h-full pl-3 pb-4 overflow-y-auto">
-        <ul class="space-y-2 font-semibold">
+    <div class="h-full px-3 pb-4 overflow-y-auto">
+        <ul class="space-y-2">
             <li>
                 <a href="/dashboard"
-                    class="{{ Request::is('dashboard') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
-                    <svg class="w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 22 21">
+                    class="{{ Request::is('dashboard') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                    <svg class="{{ Request::is('dashboard') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         <path
@@ -20,10 +19,9 @@
             @role('ADMIN')
                 <li>
                     <a href="{{ route('pinjam.daftar') }}"
-                        class="{{ Request::is('dashboard/daftar-peminjam') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 18">
+                        class="{{ Request::is('dashboard/daftar-peminjam') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                        <svg class="{{ Request::is('dashboard/daftar-peminjam') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                             <path
                                 d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                         </svg>
@@ -32,10 +30,9 @@
                 </li>
                 <li>
                     <a href="/dashboard/barang"
-                        class="{{ Request::is('dashboard/barang') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 18 20">
+                        class="{{ Request::is('dashboard/barang') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                        <svg class="{{ Request::is('dashboard/barang') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                             <path
                                 d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
                         </svg>
@@ -44,9 +41,9 @@
                 </li>
                 <li>
                     <a href="/dashboard/barang/create"
-                        class="{{ Request::is('dashboard/barang/create') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
+                        class="{{ Request::is('dashboard/barang/create') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
 
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
+                        <svg class="{{ Request::is('dashboard/barang/create') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
                             viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -55,13 +52,13 @@
                         <span class="flex-1 ml-3 whitespace-nowrap">Add Barang</span>
                     </a>
                 </li>
-                @endrole
+            @endrole
 
-                @role('PEGAWAI')
+            @role('PEGAWAI')
                 <li>
                     <a href="{{ route('pinjam.index') }}"
-                        class="{{ Request::is('dashboard/piminjaman-barang') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
+                        class="{{ Request::is('dashboard/piminjaman-barang') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                        <svg class="{{ Request::is('dashboard/piminjaman-barang') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
                             viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -74,13 +71,31 @@
 
                 <li>
                     <a href="{{ route('user.index') }}"
-                        class="{{ Request::is('dashboard/piminjaman-barang-user') ? 'bg-emerald-700' : '' }} flex items-center p-2 text-gray-200 rounded-tl-xl rounded-bl-xl hover:bg-emerald-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-200"
-                        aria-hidden="true"  xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                        class="{{ Request::is('dashboard/piminjaman-barang-user') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                        <svg class="{{ Request::is('dashboard/piminjaman-barang-user') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
+                            viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                        </svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">History Peminjam</span>
                     </a>
                 </li>
-                @endrole
+            @endrole
+
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+                <li>
+                    <a href="/profile"
+                        class="{{ Request::is('profile') ? 'bg-gray-100 text-gray-900' : '' }} flex items-center p-2 rounded-lg text-gray-200 hover:bg-gray-100 hover:text-gray-900 group">
+                        <svg class="{{ Request::is('profile') ? 'text-gray-900' : '' }} w-5 h-5 text-gray-200 transition duration-75 group-hover:text-gray-900"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
+                            viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M224 0a128 128 0 1 1 0 256A128 128 0 1 1 224 0zM178.3 304h91.4c11.8 0 23.4 1.2 34.5 3.3c-2.1 18.5 7.4 35.6 21.8 44.8c-16.6 10.6-26.7 31.6-20 53.3c4 12.9 9.4 25.5 16.4 37.6s15.2 23.1 24.4 33c15.7 16.9 39.6 18.4 57.2 8.7v.9c0 9.2 2.7 18.5 7.9 26.3H29.7C13.3 512 0 498.7 0 482.3C0 383.8 79.8 304 178.3 304zM436 218.2c0-7 4.5-13.3 11.3-14.8c10.5-2.4 21.5-3.7 32.7-3.7s22.2 1.3 32.7 3.7c6.8 1.5 11.3 7.8 11.3 14.8v30.6c7.9 3.4 15.4 7.7 22.3 12.8l24.9-14.3c6.1-3.5 13.7-2.7 18.5 2.4c7.6 8.1 14.3 17.2 20.1 27.2s10.3 20.4 13.5 31c2.1 6.7-1.1 13.7-7.2 17.2l-25 14.4c.4 4 .7 8.1 .7 12.3s-.2 8.2-.7 12.3l25 14.4c6.1 3.5 9.2 10.5 7.2 17.2c-3.3 10.6-7.8 21-13.5 31s-12.5 19.1-20.1 27.2c-4.8 5.1-12.5 5.9-18.5 2.4l-24.9-14.3c-6.9 5.1-14.3 9.4-22.3 12.8l0 30.6c0 7-4.5 13.3-11.3 14.8c-10.5 2.4-21.5 3.7-32.7 3.7s-22.2-1.3-32.7-3.7c-6.8-1.5-11.3-7.8-11.3-14.8V454.8c-8-3.4-15.6-7.7-22.5-12.9l-24.7 14.3c-6.1 3.5-13.7 2.7-18.5-2.4c-7.6-8.1-14.3-17.2-20.1-27.2s-10.3-20.4-13.5-31c-2.1-6.7 1.1-13.7 7.2-17.2l24.8-14.3c-.4-4.1-.7-8.2-.7-12.4s.2-8.3 .7-12.4L343.8 325c-6.1-3.5-9.2-10.5-7.2-17.2c3.3-10.6 7.7-21 13.5-31s12.5-19.1 20.1-27.2c4.8-5.1 12.4-5.9 18.5-2.4l24.8 14.3c6.9-5.1 14.5-9.4 22.5-12.9V218.2zm92.1 133.5a48.1 48.1 0 1 0 -96.1 0 48.1 48.1 0 1 0 96.1 0z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Pengaturan Akun</span>
+                    </a>
+                </li>
+            </ul>
         </ul>
     </div>
 </aside>
