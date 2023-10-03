@@ -14,11 +14,11 @@
             </div>
         </div>
     @endif
-
+    
     <div class="w-full bg-white p-5 rounded-lg border">
         <h1 class="mb-5 text-xl font-semibold uppercase">Pinjam Barang</h1>
-        
-        <form method="POST" action="{{ route('pinjam.peminjaman') }}" enctype="multipart/form-data">
+
+        <form method="POST" action="{{ route('user.peminjaman') }}" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="lg:grid lg:grid-cols-2 lg:gap-4">
@@ -55,14 +55,15 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="seksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seksi</label>
-                    <input type="text" id="seksi" name="seksi"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('seksi') border-red-600 @enderror"
-                        required value="{{ old('seksi') }}">
-                    @error('seksi')
-                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
-                            {{ $message }}</p>
-                    @enderror
+                    <label for="seksi"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seksi</label>
+                    <select id="seksi" name="seksi"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>-- Pilih Seksi --</option>
+                        @foreach ($seksi as $s)
+                            <option value="{{ $s }}">{{ $s }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="namaKasie" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
@@ -100,20 +101,20 @@
                 <div class="mb-3">
                     <label for="barang"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barang</label>
-                    <input type="text" id="barang" name="barang"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('barang') border-red-600 @enderror"
-                        required value="{{ old('barang') }}">
-                    @error('barang')
-                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
-                            {{ $message }}</p>
-                    @enderror
+                    <select id="barang" name="barang"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>-- Pilih Barang --</option>
+                        @foreach ($barangs as $barang)
+                            <option value="{{ $barang->nama }}">{{ $barang->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="tanggal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                         Pengembalian</label>
                     <input type="date" id="tanggal" name="tgl_pengembalian"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('tgl_pengembalian') border-red-600 @enderror"
-                         value="{{ old('tgl_pengembalian') }}">
+                        value="{{ old('tgl_pengembalian') }}">
                     @error('tgl_pengembalian')
                         <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
                             {{ $message }}</p>

@@ -28,8 +28,8 @@ class Peminjam extends Model
         return $this->belongsTo(Barang::class);
     }
 
-    public function userPinjam()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(User::class);
     }
 }

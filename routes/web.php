@@ -49,7 +49,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/piminjaman-barang', [PeminjamController::class, 'index'])->name('pinjam.index');
-    Route::put('/dashboard/piminjaman-barang', [PeminjamController::class, 'peminjaman'])->name('pinjam.peminjaman');
+    
+});
+
+Route::middleware('auth', 'role:PEGAWAI')->group(function () {
+    Route::put('/dashboard/piminjaman-barang', [UserPinjamController::class, 'peminjaman'])->name('user.peminjaman');
 });
 
 Route::middleware('auth', 'role:ADMIN')->group(function () {
@@ -57,8 +61,8 @@ Route::middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('/dashboard/daftar-peminjam/export', [PeminjamController::class, 'export'])->name('pinjam.export');
     Route::get('/dashboard/daftar-peminjam', [PeminjamController::class, 'daftarPeminjam'])->name('pinjam.daftar');
     Route::put('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
-    Route::get('/dashboard/daftar-peminjam/tolak/{id}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
-    Route::get('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
+    Route::patch('/dashboard/daftar-peminjam/tolak/{id}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
+    Route::patch('/dashboard/daftar-peminjam/selesai/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
 });
 
 require __DIR__ . '/auth.php';
