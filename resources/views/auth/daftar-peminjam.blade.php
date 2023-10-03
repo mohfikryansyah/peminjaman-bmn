@@ -33,7 +33,7 @@
         </div> --}}
 
         <div class="mb-5">
-            <h1 class="sm:text-2xl text-xs font-semibold uppercase">Daftar Peminjam Barang Milik Negara</h1>
+            <h1 class="sm:text-2xl text-lg font-semibold uppercase">Daftar Peminjam Barang Milik Negara</h1>
 
         </div>
 
