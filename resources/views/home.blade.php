@@ -9,20 +9,21 @@
                         class="h-8 mr-3" alt="FlowBite Logo" />
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">BPKHTL-XV</span>
                 </a>
-                <div class="flex md:order-2">
+                <div class="w-fit ml-auto">
                     @auth
-
                         <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"
-                            class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-                            type="button">Welcome, {{ auth()->user()->name }}<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center md:w-full w-[140px]  truncate"
+                            type="button">Welcome, {{ auth()->user()->name }}
+                            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m1 1 4 4 4-4" />
-                            </svg></button>
+                            </svg>
+                        </button>
 
                         <!-- Dropdown menu -->
                         <div id="dropdownInformation"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                 <div>{{ auth()->user()->name }}</div>
                                 <div class="font-medium truncate">{{ auth()->user()->email }}</div>
@@ -30,13 +31,12 @@
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownInformationButton">
                                 <li>
-                                    <a href="{{ route('dashboard') }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
+                                    <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
                                 </li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                    <button class="block w-full text-left px-4 py-2 hover:bg-gray-100 ">Logout</button>
+                                        <button class="block w-full text-left px-4 py-2 hover:bg-gray-100 ">Logout</button>
                                     </form>
                                 </li>
                         </div>
@@ -44,16 +44,6 @@
                         <a href="/login"
                             class="text-white outline-1 outline hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">LOGIN</a>
                     @endauth
-                    {{-- <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button> --}}
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul
