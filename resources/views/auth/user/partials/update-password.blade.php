@@ -1,5 +1,5 @@
 <div class="mt-5 w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">Update Password</h5>
+    <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">Perbarui Password</h5>
     <p class="mb-8 font-normal text-sm text-gray-500">Pastikan akun Anda menggunakan kata sandi yang panjang dan acak
         agar
         tetap aman</p>

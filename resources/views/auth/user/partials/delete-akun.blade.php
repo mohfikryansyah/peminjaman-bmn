@@ -1,11 +1,11 @@
 <div class="mt-5 w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">{{ __('Delete Account') }}</h5>
+    <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">{{ __('Hapus Akun') }}</h5>
     <p class="mb-8 font-normal text-sm text-gray-500">
         {{ __('Setelah akun Anda dihapus, semua datanya akan dihapus secara permanen. Sebelum menghapus akun Anda, harap unduh data atau informasi apa pun yang ingin Anda simpan.') }}
     </p>
     <section class="space-y-6">
         <x-danger-button x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}</x-danger-button>
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('HAPUS AKUN') }}</x-danger-button>
 
         <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
             <form method="post" action="{{ route('profile.destroy') }}" class="p-6">

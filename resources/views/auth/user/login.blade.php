@@ -40,9 +40,9 @@
                 @endif
             </div>
             <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto ">Login</button>
-            {{-- <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Not registered? <a class="text-primary-700 hover:underline">Create account</a>
-            </div> --}}
+            <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Belum punya akun? <a href="/register" class="text-blue-500">Buat akun</a>
+            </div>
         </form>
     </div>
 </div>
