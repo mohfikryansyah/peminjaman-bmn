@@ -37,7 +37,7 @@ class BarangController extends Controller
         ]);
 
         Barang::create($validatedData);
-        return redirect('/dashboard/barang')->with('BARANG_STORED', 'Barang berhasil ditambahkan');
+        return redirect()->back()->with('BARANG_STORED', 'Barang berhasil ditambahkan');
     }
 
     /**

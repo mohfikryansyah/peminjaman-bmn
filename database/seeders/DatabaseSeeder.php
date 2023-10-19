@@ -490,12 +490,6 @@ class DatabaseSeeder extends Seeder
             'satuan' => 'Buah'
         ]);
         Barang::create([
-            'nama' => 'External/ Portable Hardisk',
-            'stok' => '0',
-            'kode_barang' => '3100203017',
-            'satuan' => 'Buah'
-        ]);
-        Barang::create([
             'nama' => 'Shredder',
             'stok' => '0',
             'kode_barang' => '3170121006',
