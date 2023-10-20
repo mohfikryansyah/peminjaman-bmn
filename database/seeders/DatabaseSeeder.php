@@ -436,12 +436,6 @@ class DatabaseSeeder extends Seeder
             'satuan' => 'Buah'
         ]);
         Barang::create([
-            'nama' => 'Kompas Geologi',
-            'stok' => '0',
-            'kode_barang' => '3060105023',
-            'satuan' => 'Buah'
-        ]);
-        Barang::create([
             'nama' => 'Clinometer',
             'stok' => '0',
             'kode_barang' => '3060105024',
