@@ -15,7 +15,7 @@
         </div>
         <div class="mb-6">
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email anda</label>
-            <input type="email" id="email"
+            <input type="email" id="email" name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
                 required value="{{ old('email', $user->email) }}" autocomplete="email">
         </div>
