@@ -48,9 +48,10 @@ Route::middleware(['auth', 'role:PEGAWAI', 'status'])->group(function () {
     Route::get('/dashboard/piminjaman-barang-user', [UserPinjamController::class, 'index'])->name('user.index');
 });
 
+Route::get('/get-nama-nip/{seksi}', [PeminjamController::class, 'getNamaNip']);
+
 Route::middleware(['auth', 'role:PEGAWAI', 'status'])->group(function () {
     Route::get('/dashboard/piminjaman-barang', [PeminjamController::class, 'index'])->name('pinjam.index');
-    
 });
 
 Route::middleware('auth', 'role:PEGAWAI', 'status')->group(function () {

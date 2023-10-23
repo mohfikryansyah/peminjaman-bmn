@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('noSPT');
             $table->string('barang');
             $table->date('tgl_pinjam')->nullable();
-            $table->date('tgl_pengembalian');
+            $table->date('tgl_pengembalian')->format();
             $table->string('status');
             $table->string('suratImage');
             $table->string('kode_barang')->nullable();

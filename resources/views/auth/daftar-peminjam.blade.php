@@ -122,10 +122,13 @@
             </svg>
             Export
         </a>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
+        <div class="relative overflow-x-auto shadow-md rounded-lg mt-2">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-white uppercase bg-slate-800 tracking-wider">
                     <tr>
+                        <th scope="col" class="px-6 py-3">
+
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Nama
                         </th>
@@ -161,22 +164,26 @@
                     @forelse ($peminjams as $peminjam)
                         <tr class="bg-white border-b">
 
+                            <td class="px-6 py-4">
+                                <img src="{{ asset('storage/' . $peminjam->user->fotoProfile) }}" class="aspect-square w-20" alt="">
+
+                            </td>
                             <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                                 <a class="text-blue-500"
                                     href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->nama }}</a>
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 truncate">
                                 {{ $peminjam->barang }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 truncate">
                                 {{ $peminjam->tgl_pinjam }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 truncate">
                                 {{ $peminjam->tgl_pengembalian }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 truncate">
                                 <a href="{{ asset('storage/' . $peminjam->suratImage) }}" target="_blank"
-                                    class="text-blue-500">Lihat gambar</a>
+                                    class="text-blue-500">Lihat</a>
                             </td>
                             @if ($peminjam->status == 'Menunggu')
                                 <td class="px-6 whitespace-nowrap py-4">
@@ -252,7 +259,7 @@
                                         @csrf
                                         @method('patch')
                                         <button type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Selesai</button>
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Selesai</button>
                                     </form>
                                 </td>
                             @elseif ($peminjam->status == 'Ditolak')

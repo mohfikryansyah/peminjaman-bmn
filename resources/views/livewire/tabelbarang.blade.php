@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                     @forelse ($barangs as $index => $barang)
-                        <tr class="bg-white border-b">
+                        <tr class="bg-white border-b duration-500 hover:bg-gray-100">
                             <th scope="row" class="px-6 py-4">
                                 {{ $barangs->firstItem() + $index }}
                             </th>
@@ -93,6 +93,4 @@
         </div>
         {{ $barangs->links() }}
     @endrole
-
-    
 </div>

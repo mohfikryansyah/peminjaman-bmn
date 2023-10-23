@@ -3,35 +3,40 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Kasie;
 use App\Models\Barang;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 use App\Mail\InfoPengembalian;
+use App\Exports\PeminjamExport;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
-use App\Exports\PeminjamExport;
 
 class PeminjamController extends Controller
 {
-    private $seksi = [
-        'PKH' => 'PKH',
-        'TU' => 'TATA USAHA',
-        'SDHTL' => 'SDHTL'
-    ];
-    
     public function index()
-    {
+    {   
+        if (!auth()->user()->fotoProfile) {
+            return redirect(route('profile.edit'))->with('profile', 'Silahkan lengkapi foto profil anda untuk dapat melakukan peminjaman barang');
+        }
+
         return view('auth.peminjam.peminjaman', [
             'barangs' => Barang::select('nama')->get(),
-            'seksi' => $this->seksi
+            'kasie' => Kasie::all(),
         ]);
+    }
+
+    public function getNamaNip($seksi)
+    {
+        $data = Kasie::where('seksi', $seksi)->first();
+        return response()->json($data);
     }
 
     public function show(Peminjam $peminjam)
     {
         return view('auth.peminjam.show-details-peminjam', [
-            'peminjam' => $peminjam
+            'peminjam' => $peminjam,
         ]);
     }
 
@@ -53,6 +58,8 @@ class PeminjamController extends Controller
                     'selisih' => $selisihHari,
                 ];
 
+
+                // dd($selisihHari);
                 $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
 
                 if (!Cache::has($cacheMail)) {
@@ -110,7 +117,7 @@ class PeminjamController extends Controller
         $tolak = Peminjam::findOrFail($id);
         $tolak->status = 'Ditolak';
         $tolak->save();
-        
+
         return redirect()
             ->back()
             ->with('tolakSuccess', 'Permintaan ditolak');

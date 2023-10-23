@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserPinjamController extends Controller
 {
     public function index()
-    {
+    {   
         return view('auth.peminjam.daftar-peminjam-user', [
             'peminjams' => Peminjam::where('user_id', auth()->user()->id)->get()
         ]);
@@ -27,7 +27,7 @@ class UserPinjamController extends Controller
             'noSPT' => 'required|numeric',
             'barang' => 'required',
             'tgl_pengembalian' => 'required',
-            'suratImage' => 'required|image|file|max:2048',
+            'suratImage' => 'required|image|file|max:1024',
         ]);
 
         $validatedPinjamBarang = [

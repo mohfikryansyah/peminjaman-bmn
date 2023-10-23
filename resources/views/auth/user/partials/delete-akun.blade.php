@@ -11,7 +11,6 @@
             <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
                 @csrf
                 @method('delete')
-
                 <h2 class="text-lg font-medium text-gray-900">
                     {{ __('Are you sure you want to delete your account?') }}
                 </h2>

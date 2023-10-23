@@ -1,9 +1,39 @@
-<div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+@if (Session::get('profile'))
+    <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50"
+        role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+            <span class="font-medium"></span> {{ Session::get('profile') }}
+        </div>
+    </div>
+@endif
+
+<div class="w-full p-6 border border-gray-200 rounded-lg shadow relative">
     <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">Informasi Profil</h5>
     <p class="mb-8 font-normal text-sm text-gray-500">Perbarui informasi akun dan email anda</p>
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')
+        <div class="mb-6">
+
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="fotoProfile">Upload
+                Foto</label>
+
+            <input
+                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                aria-describedby="fotoProfile" id="fotoProfile" name="fotoProfile" onchange="previewImage()"
+                type="file">
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="fotoProfile">PNG, JPEG, or JPG.</p>
+
+            @error('name')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama anda</label>
             <input type="text" id="name" name="name"
@@ -14,7 +44,8 @@
             @enderror
         </div>
         <div class="mb-6">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email anda</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                anda</label>
             <input type="email" id="email" name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
                 required value="{{ old('email', $user->email) }}" autocomplete="email">
@@ -29,4 +60,35 @@
         </div>
     </form>
 
+
+    <script>
+        window.onscroll = function() {
+            const imgPreview = document.querySelector('#img-profile');
+            const fixed = imgPreview.offsetTop;
+
+            if (window.pageYOffset > fixed) {
+                imgPreview.classList.add('lg:fixed');
+                imgPreview.classList.remove('lg:absolute');
+                imgPreview.classList.add('top-16');
+            } else {
+                imgPreview.classList.remove('top-16');
+                imgPreview.classList.remove('lg:fixed');
+                imgPreview.classList.add('lg:absolute');
+            }
+        }
+
+        function previewImage() {
+            const image = document.querySelector('#fotoProfile');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.classList.add("block");
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 </div>
