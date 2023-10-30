@@ -95,6 +95,14 @@ class PeminjamController extends Controller
         $kodeBarang2 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang2'])->first();
         $kodeBarang3 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang3'])->first();
 
+        if (empty($confirm->foto)) {
+            $confirm
+                ->fill([
+                    'foto_barang' => ($validatedPinjamBarang['foto_barang'] = $request->file('foto_barang')->store('foto-barang')),
+                ])
+                ->save();
+        }
+
         if (empty($confirm->kode_barang1) || empty($confirm->seriNUP1)) {
             if ($kodeBarang1) {
                 if (empty($confirm->kode_barang1)) {
@@ -159,17 +167,6 @@ class PeminjamController extends Controller
                 return back()->with('fail3', 'kode barang tidak ditemukan');
             }
         }
-
-        
-
-        if (empty($confirm->foto)) {
-            $confirm
-                ->fill([
-                    'foto_barang' => ($validatedPinjamBarang['foto_barang'] = $request->file('foto_barang')->store('foto-barang')),
-                ])
-                ->save();
-        }
-
 
         return redirect()
             ->back()
