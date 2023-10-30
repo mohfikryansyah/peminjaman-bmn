@@ -62,10 +62,10 @@ class PeminjamController extends Controller
                 // dd($selisihHari);
                 $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
 
-                // if (!Cache::has($cacheMail)) {
-                //     mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
-                //     Cache::put($cacheMail, true, now()->endOfDay());
-                // }
+                if (!Cache::has($cacheMail)) {
+                    mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
+                    Cache::put($cacheMail, true, now()->endOfDay());
+                }
             }
         }
     }
