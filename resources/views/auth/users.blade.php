@@ -34,9 +34,13 @@
                             {{ $loop->iteration }}
                         </th>
                         <td class="px-6 py-4">
+                            @if ($user->fotoProfile)
                             <a href="{{ url('storage/' . $user->fotoProfile) }}" target="_blank">
                                 <img src="{{ asset('storage/' . $user->fotoProfile) }}" class="aspect-square w-14">
                             </a>
+                            @else
+                                <p>Belum Upload Foto</p>
+                            @endif
                         </td>
                         <td wire:key="{{ $user->id }}" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                             {{ $user->name }}
