@@ -12,11 +12,12 @@ use App\Exports\PeminjamExport;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
+use PhpParser\Node\Stmt\TryCatch;
 
 class PeminjamController extends Controller
 {
     public function index()
-    {   
+    {
         if (!auth()->user()->fotoProfile) {
             return redirect(route('profile.edit'))->with('profile', 'Silahkan lengkapi foto profil anda untuk dapat melakukan peminjaman barang');
         }
@@ -58,14 +59,13 @@ class PeminjamController extends Controller
                     'selisih' => $selisihHari,
                 ];
 
-
                 // dd($selisihHari);
                 $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
 
-                if (!Cache::has($cacheMail)) {
-                    mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
-                    Cache::put($cacheMail, true, now()->endOfDay());
-                }
+                // if (!Cache::has($cacheMail)) {
+                //     mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
+                //     Cache::put($cacheMail, true, now()->endOfDay());
+                // }
             }
         }
     }
@@ -74,42 +74,137 @@ class PeminjamController extends Controller
     {
         $this->hitungSelisihAllData();
 
-        return view('auth.daftar-peminjam', [
-            'peminjams' => Peminjam::all(),
-        ]);
+        return view('auth.daftar-peminjam');
     }
 
     public function konfirmasiPeminjam(Request $request, $id)
     {
-        $validatedPinjamBarang = $request->validate([
-            'kode_barang' => 'required',
-            'seriNUP' => 'required',
-        ]);
-        $validatedPinjamBarang['status'] = 'Disetujui';
-
-        $cekKodeBarang = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang'])->first();
+        // dd($request->all());
+        $validatedPinjamBarang = [
+            'kode_barang1' => $request->input('kode_barang1'),
+            'kode_barang2' => $request->input('kode_barang2'),
+            'kode_barang3' => $request->input('kode_barang3'),
+            'seriNUP1' => $request->input('seriNUP1'),
+            'seriNUP2' => $request->input('seriNUP2'),
+            'seriNUP3' => $request->input('seriNUP3'),
+        ];
 
         $confirm = Peminjam::findOrFail($id);
 
-        if (!$cekKodeBarang) {
-            return redirect()
-                ->back()
-                ->with('error', 'Kode barang tidak ditemukan!');
-        } elseif ($cekKodeBarang['stok'] < 1) {
-            return redirect()
-                ->back()
-                ->with('error', 'Stok barang ' . $cekKodeBarang['nama'] . ' dengan kode barang ' . $cekKodeBarang['kode_barang'] . ' habis');
-        } else {
-            $confirm->update($validatedPinjamBarang);
+        $kodeBarang1 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang1'])->first();
+        $kodeBarang2 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang2'])->first();
+        $kodeBarang3 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang3'])->first();
+
+        if (empty($confirm->kode_barang1) || empty($confirm->seriNUP1)) {
+            if ($kodeBarang1) {
+                if (empty($confirm->kode_barang1)) {
+                    if ($kodeBarang1->stok >= $confirm->stokbarang1) {
+                        $kodeBarang1->decrement('stok', $confirm->stokbarang1);
+                    } else {
+                        return back()->with('fail1', 'stok barang tidak mencukupi');
+                    }
+                }
+                $confirm
+                    ->fill([
+                        'kode_barang1' => $validatedPinjamBarang['kode_barang1'],
+                        'seriNUP1' => $validatedPinjamBarang['seriNUP1'],
+                        'status' => 'Disetujui',
+                    ])
+                    ->save();
+            } else {
+                return back()->with('fail1', 'kode barang tidak ditemukan');
+            }
         }
 
-        $stok = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang'])->first();
-        $stok->stok -= 1;
-        $stok->save();
+        
+        if (empty($confirm->kode_barang2) || empty($confirm->seriNUP2)) {
+            if ($kodeBarang2) {
+                if (empty($confirm->kode_barang2)) {
+                    if ($kodeBarang2->stok >= $confirm->stokbarang2) {
+                        $kodeBarang2->decrement('stok', $confirm->stokbarang2);
+                    } else {
+                        return back()->with('fail2', 'stok barang tidak mencukupi');
+                    }
+                }
+                $confirm
+                    ->fill([
+                        'kode_barang2' => $validatedPinjamBarang['kode_barang2'],
+                        'seriNUP2' => $validatedPinjamBarang['seriNUP2'],
+                        'status' => 'Disetujui',
+                    ])
+                    ->save();
+            } else {
+                return back()->with('fail2', 'kode barang tidak ditemukan');
+            }
+        }
+
+        
+        if (empty($confirm->kode_barang3) || empty($confirm->seriNUP3)) {
+            if ($kodeBarang3) {
+                if (empty($confirm->kode_barang3)) {
+                    if ($kodeBarang3->stok >= $confirm->stokbarang3) {
+                        $kodeBarang3->decrement('stok', $confirm->stokbarang3);
+                    } else {
+                        return back()->with('fail3', 'stok barang tidak mencukupi');
+                    }
+                }
+                $confirm
+                    ->fill([
+                        'kode_barang3' => $validatedPinjamBarang['kode_barang3'],
+                        'seriNUP3' => $validatedPinjamBarang['seriNUP3'],
+                        'status' => 'Disetujui',
+                    ])
+                    ->save();
+            } else {
+                return back()->with('fail3', 'kode barang tidak ditemukan');
+            }
+        }
+
+        
+
+        if (empty($confirm->foto)) {
+            $confirm
+                ->fill([
+                    'foto_barang' => ($validatedPinjamBarang['foto_barang'] = $request->file('foto_barang')->store('foto-barang')),
+                ])
+                ->save();
+        }
+
 
         return redirect()
             ->back()
             ->with('confirmSuccess', 'Success');
+    }
+
+    public function selesai($id)
+    {
+        $selesai = Peminjam::findOrFail($id);
+        $stokBarang1 = Barang::where('kode_barang', $selesai['kode_barang1'])->first();
+        $stokBarang2 = Barang::where('kode_barang', $selesai['kode_barang2'])->first();
+        $stokBarang3 = Barang::where('kode_barang', $selesai['kode_barang3'])->first();
+
+        $selesai->status = 'Dikembalikan';
+        $selesai->tgl_dikembalikan = Carbon::today();
+        $selesai->save();
+
+        if (!empty($selesai->kode_barang1)) {
+            $stokBarang1->increment('stok', $selesai['stokbarang1']);
+            $stokBarang1->save();
+        }
+
+        if (!empty($selesai->kode_barang2)) {
+            $stokBarang2->increment('stok', $selesai['stokbarang2']);
+            $stokBarang2->save();
+        }
+
+        if (!empty($selesai->kode_barang3)) {
+            $stokBarang3->increment('stok', $selesai['stokbarang3']);
+            $stokBarang3->save();
+        }
+
+        return redirect()
+            ->back()
+            ->with('selesaiSuccess');
     }
 
     public function tolakPeminjam($id)
@@ -121,21 +216,5 @@ class PeminjamController extends Controller
         return redirect()
             ->back()
             ->with('tolakSuccess', 'Permintaan ditolak');
-    }
-
-    public function selesai($id)
-    {
-        $selesai = Peminjam::findOrFail($id);
-        $stok = Barang::where('kode_barang', $selesai->kode_barang)->first();
-
-        $selesai->status = 'Dikembalikan';
-        $selesai->save();
-
-        $stok->stok += 1;
-        $stok->save();
-
-        return redirect()
-            ->back()
-            ->with('selesaiSuccess');
     }
 }

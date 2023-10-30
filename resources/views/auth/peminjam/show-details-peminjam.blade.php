@@ -1,261 +1,6 @@
 @extends('auth.layouts.main')
 @section('content')
     <h1 class="mb-5 font-bold text-2xl">Detail Peminjam</h1>
-    {{-- <a href="{{ asset('storage/' . $peminjam->suratImage) }}"
-        class="flex flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 max-w-screen-md">
-        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-            src="{{ asset('storage/' . $peminjam->suratImage) }}" alt="">
-        <div class="flex flex-col p-4">
-
-            <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-
-                    <tbody>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                                Nama
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->nama }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                                NIP
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->nip }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                                Email
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->email }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Pangkat
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->pangkat }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                seksi
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->seksi }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                nama Kasie
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->namaKasie }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                NIP Kasie
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->nipKasie }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                No. SPT
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->noSPT }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Barang
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->barang }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Tanggal Pinjam
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->tgl_pinjam }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Tanggal Pengembalian
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->tgl_pengembalian }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Status
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->status }}
-                            </td>
-                        </tr>
-                        <tr class="dark:bg-gray-800">
-                            <th scope="row"
-                                class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                                Kode Barang
-                            </th>
-                            <td class="px-6 py-2">
-                                {{ $peminjam->kode_barang }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </a> --}}
-    {{-- <div class="grid grid-cols-3 rounded-xl overflow-hidden">
-        <div class="lg:col-span-2 col-span-full bg-white border-2 border-gray-200 rounded-xl p-5">
-            <table class="w-full text-sm text-left text-gray-500 overflow-visible">
-                <tbody>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row" class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                            Nama
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->nama }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row" class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                            NIP
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->nip }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row" class="font-semibold text-gray-700 whitespace-nowrap dark:text-white">
-                            Email
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->email }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Pangkat
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->pangkat }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            seksi
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->seksi }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            nama Kasie
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->namaKasie }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            NIP Kasie
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->nipKasie }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            No. SPT
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->noSPT }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Barang
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->barang }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Tanggal Pinjam
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->tgl_pinjam }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Tanggal Pengembalian
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->tgl_pengembalian }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Status
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->status }}
-                        </td>
-                    </tr>
-                    <tr class="dark:bg-gray-800">
-                        <th scope="row"
-                            class="font-semibold text-gray-700 whitespace-nowrap dark:text-white first-letter:uppercase">
-                            Kode Barang
-                        </th>
-                        <td class="px-6 py-2">
-                            {{ $peminjam->kode_barang }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div> --}}
 
     <p class="font-semibold">
         Status :
@@ -267,14 +12,14 @@
                 class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $peminjam->status }}</span>
         @else
             <span
-                class="bg-red-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $peminjam->status }}</span>
+                class="bg-blue-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $peminjam->status }}</span>
         @endif
     </p>
 
 
     <div class="md:grid md:grid-cols-3 md:gap-5 mt-5">
         <div class="col-span-2">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-lg p-5 shadow-lg">
                 <div class="mb-3">
                     <label for="nama" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Nama</label>
                     <input type="text" id="nama" name="nama"
@@ -282,7 +27,8 @@
                         value="{{ $peminjam->nama }}" readonly>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Email</label>
+                    <label for="email"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Email</label>
                     <input type="text" id="email" name="email"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         value="{{ $peminjam->email }}" readonly>
@@ -292,7 +38,7 @@
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NIP/NIK</label>
                     <input type="number" id="nip" name="nip"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required value="{{ $peminjam->nip }}" readonly>
+                        value="{{ $peminjam->nip }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="pangkat" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Pangkat
@@ -304,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5 mt-5">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-lg p-5 mt-5 shadow-lg">
                 <div class="mb-3 col-span-2">
                     <label for="seksi"
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Seksi</label>
@@ -327,47 +73,155 @@
                         required value="{{ $peminjam->nipKasie }}" readonly>
                 </div>
             </div>
-
-            <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5 mt-5">
-                <div class="mb-3 col-span-1">
-                    <label for="barang"
-                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Barang</label>
-                    <input type="text" id="barang" name="barang"
-                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required value="{{ $peminjam->barang }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="noSPT" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">No.
-                        SPT</label>
-                    <input type="number" id="noSPT" name="noSPT"
-                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"value="{{ $peminjam->noSPT }}"
-                        readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="tgl_pinjam" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Tanggal
-                        Pinjam</label>
-                    <input type="text" id="tgl_pinjam" name="tgl_pinjam"
-                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->tgl_pinjam }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="tgl_pengembalian" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Tanggal
-                        Pengembalian</label>
-                    <input type="text" id="tgl_pengembalian" name="tgl_pengembalian"
-                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->tgl_pengembalian }}" readonly>
-                </div>
-            </div>
         </div>
-        <div class="col-span-1">
-            <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-[2/3] lg:mt-0 mt-5">
-                <img class="img-preview aspect-[2/3] border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
-                    src="{{ asset('storage/' . auth()->user()->fotoProfile) }}">
+
+        <div class="col-span-1 flex space-x-4">
+            <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-[2/3] mt-5 lg:mt-0">
+                <a href="{{ url('storage/' . $peminjam->user->fotoProfile) }}" target="_blank">
+                    <img class="img-preview aspect-[2/3] border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
+                        src="{{ asset('storage/' . $peminjam->user->fotoProfile) }}">
+                </a>
             </div>
-            <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-square mt-5">
-                <img class="img-preview aspect-square border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
-                    src="{{ asset('storage/' . $peminjam->suratImage) }}">
+            <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-[2/3] mt-5 lg:mt-0">
+                <a href="{{ url('storage/' . $peminjam->foto_barang) }}" target="_blank">
+                    <img class="img-preview aspect-[2/3] border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
+                        src="{{ asset('storage/' . $peminjam->foto_barang) }}">
+                </a>
             </div>
         </div>
     </div>
+
+    <form method="POST" action="{{ route('pinjam.confirm', $peminjam->id) }}" enctype="multipart/form-data">
+        @csrf
+        @method('patch')
+        @if (empty($peminjam->foto_barang))
+            <div class="lg:grid lg:gap-4 bg-white border border-gray-300 rounded-xl p-5 mt-5 shadow-lg">
+                <div class="mb-3">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="foto_barang">Foto
+                        Barang</label>
+                    <input type="file" id="foto_barang" name="foto_barang"
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="file_input_help">
+                    @error('foto_barang')
+                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">
+                            {{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+        @endif
+        <div class="lg:grid lg:grid-cols-4 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5 mt-5 shadow-lg">
+            @if (!empty($peminjam->barang1))
+                <div class="mb-3 col-span-1">
+                    <label for="barang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Barang
+                        Pertama</label>
+                    <input type="text" id="barang1"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->barang1 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="qtybarang1"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">QTY</label>
+                    <input type="text" id="qtybarang1"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->stokbarang1 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
+                        Barang</label>
+                    <input type="number" id="kodebarang1" name="kode_barang1"
+                        class=" border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang1 ? 'bg-gray-200' : 'bg-gray-50' }} "
+                        min="0" value="{{ old('kode_barang1', $peminjam->kode_barang1) }}"
+                        {{ $peminjam->kode_barang1 ? 'readOnly' : '' }}>
+                        @if(Session::get('fail1'))
+                        <p class="text-xs text-red-500">{{ Session::get('fail1') }}</p>
+                        @endif
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="seri_barang1"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NUP/SERI</label>
+                    <input type="number" id="seri_barang1" name="seriNUP1"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->seriNUP1 ? 'bg-gray-200' : 'bg-gray-50' }}"
+                        min="0" value="{{ old('seriNUP1', $peminjam->seriNUP1) }}"
+                        {{ $peminjam->seriNUP1 ? 'readOnly' : '' }}>
+                </div>
+            @endif
+
+
+            @if (!empty($peminjam->barang2))
+                <div class="mb-3 col-span-1">
+                    <label for="barang2" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Barang
+                        Kedua</label>
+                    <input type="text" id="barang2"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->barang2 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="qtybarang2"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">QTY</label>
+                    <input type="text" id="qtybarang2"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->stokbarang2 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="kodebarang2" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
+                        Barang</label>
+                    <input type="number" id="kodebarang2" name="kode_barang2"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang2 ? 'bg-gray-200' : 'bg-gray-50' }}"
+                        min="0" value="{{ old('kode_barang2', $peminjam->kode_barang2) }}"
+                        {{ $peminjam->kode_barang2 ? 'readOnly' : '' }}>
+                        @if(Session::get('fail2'))
+                        <p class="text-xs text-red-500">{{ Session::get('fail2') }}</p>
+                        @endif
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="seribarang2"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NUP/SERI</label>
+                    <input type="number" id="seribarang2" name="seriNUP2"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->seriNUP2 ? 'bg-gray-200' : 'bg-gray-50' }}"
+                        min="0" value="{{ old('seriNUP2', $peminjam->seriNUP2) }}"
+                        {{ $peminjam->seriNUP2 ? 'readOnly' : '' }}>
+                </div>
+            @endif
+
+            @if (!empty($peminjam->barang3))
+                <div class="mb-3 col-span-1">
+                    <label for="barang3" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Barang
+                        Ketiga</label>
+                    <input type="text" id="barang3"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->barang3 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="qtybarang3"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">QTY</label>
+                    <input type="text" id="qtybarang3"
+                        class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value="{{ $peminjam->stokbarang3 }}" readonly>
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="kodebarang3" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
+                        Barang</label>
+                    <input type="number" id="kodebarang3" name="kode_barang3"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang3 ? 'bg-gray-200' : 'bg-gray-50' }}"
+                        min="0" value="{{ old('kode_barang3', $peminjam->kode_barang3) }}"
+                        {{ $peminjam->kode_barang3 ? 'readOnly' : '' }}>
+                        @if(Session::get('fail3'))
+                        <p class="text-xs text-red-500">{{ Session::get('fail3') }}</p>
+                        @endif
+                </div>
+                <div class="mb-3 col-span-1">
+                    <label for="seribarang3"
+                        class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NUP/SERI</label>
+                    <input type="number" id="seribarang3" name="seriNUP3"
+                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->seriNUP3 ? 'bg-gray-200' : 'bg-gray-50' }}"
+                        min="0" value="{{ old('seriNUP3', $peminjam->seriNUP3) }}"
+                        {{ $peminjam->seriNUP3 ? 'readOnly' : '' }}>
+                </div>
+            @endif
+        </div>
+        <button type="submit"
+            class="mt-5 p-2 mr-1 text-base font-medium text-center uppercase inline-flex items-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300">
+            Konfirmasi
+        </button>
+    </form>
 @endsection

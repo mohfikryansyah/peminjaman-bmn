@@ -25,9 +25,8 @@ class UserPinjamController extends Controller
             'namaKasie' => 'required',
             'nipKasie' => 'required|numeric',
             'noSPT' => 'required|numeric',
-            'barang' => 'required',
             'tgl_pengembalian' => 'required',
-            'suratImage' => 'required|image|file|max:1024',
+            'suratImage' => 'required|mimes:pdf|file|max:1024',
         ]);
 
         $validatedPinjamBarang = [
@@ -38,10 +37,16 @@ class UserPinjamController extends Controller
             'namaKasie' => ucwords($request->input('namaKasie')),
             'nipKasie' => $request->input('nipKasie'),
             'noSPT' => $request->input('noSPT'),
-            'barang' => ucwords($request->input('barang')),
             'tgl_pengembalian' => $request->input('tgl_pengembalian'),
+            'barang1' => $request->input('barang1'),
+            'stokbarang1' => $request->input('stokbarang1'),
+            'barang2' => $request->input('barang2'),
+            'stokbarang2' => $request->input('stokbarang2'),
+            'barang3' => $request->input('barang3'),
+            'stokbarang3' => $request->input('stokbarang3'),
         ];
 
+        
         $validatedPinjamBarang['suratImage'] = $request->file('suratImage')->store('surat-images');
         $validatedPinjamBarang['user_id'] = auth()->user()->id;
         $validatedPinjamBarang['email'] = auth()->user()->email;

@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('/dashboard/barang', BarangController::class)->middleware('auth');
 Route::put('/dashboard/barang', [BarangController::class, 'store'])->middleware('auth', 'role:ADMIN');
-Route::get('/dashboard/barang', [BarangController::class, 'index'])->middleware('auth', 'role:ADMIN');
+Route::get('/dashboard/barang', [BarangController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/barang/create', [BarangController::class, 'create'])->middleware('auth', 'role:ADMIN');
 
 Route::middleware('auth')->group(function () {
@@ -62,7 +62,7 @@ Route::middleware('auth', 'role:ADMIN')->group(function () {
     Route::get('/dashboard/daftar-peminjam/details/{peminjam}', [PeminjamController::class, 'show'])->name('pinjam.show');
     Route::get('/dashboard/daftar-peminjam/export', [PeminjamController::class, 'export'])->name('pinjam.export');
     Route::get('/dashboard/daftar-peminjam', [PeminjamController::class, 'daftarPeminjam'])->name('pinjam.daftar');
-    Route::put('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
+    Route::patch('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
     Route::patch('/dashboard/daftar-peminjam/tolak/{id}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
     Route::patch('/dashboard/daftar-peminjam/selesai/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
 

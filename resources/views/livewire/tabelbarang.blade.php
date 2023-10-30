@@ -13,13 +13,13 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="search" wire:model.live.debounce.500="search"
+                <input type="search" id="search" wire:model.live="search"
                     class="block p-2 w-full lg:w-[250px] pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Nama/kode barang">
             </div>
         </div>
     </div>
-    @role('ADMIN')
+    {{-- @role('ADMIN') --}}
 
         <div class="relative overflow-x-auto shadow-lg rounded-lg mb-5">
             <table class="w-full text-sm text-left text-gray-500">
@@ -31,9 +31,11 @@
                         <th scope="col" class="px-6 py-3">
                             Nama Barang
                         </th>
+                        @role('ADMIN')
                         <th scope="col" class="px-6 py-3">
                             Kode Barang
                         </th>
+                        @endrole
                         <th scope="col" class="px-6 py-3">
                             Satuan
                         </th>
@@ -64,9 +66,11 @@
                                 class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                                 {{ $barang->nama }}
                             </td>
+                            @role('ADMIN')
                             <td class="px-6 py-4">
                                 {{ $barang->kode_barang }}
                             </td>
+                            @endrole
                             <td class="px-6 py-4">
                                 {{ $barang->satuan }}
                             </td>
@@ -92,5 +96,5 @@
             </table>
         </div>
         {{ $barangs->links() }}
-    @endrole
+    {{-- @endrole --}}
 </div>
