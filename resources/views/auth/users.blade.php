@@ -34,7 +34,8 @@
                             {{ $loop->iteration }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $user->fotoProfile }}
+                            <img src="{{ asset('storage/' . $user->fotoProfile) }}"
+                                class="aspect-square w-14" alt="">
                         </td>
                         <td wire:key="{{ $user->id }}" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                             {{ $user->name }}
