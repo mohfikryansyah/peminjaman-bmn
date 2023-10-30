@@ -15,7 +15,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div class="ml-3 text-sm font-medium">
-                TESS
+                {{ Session::get('selesaiSukses') }}
             </div>
             <button type="button"
                 class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
@@ -103,7 +103,7 @@
                 </div>
                 <input type="search" id="search" wire:model.live="search"
                     class="block p-2 w-full lg:w-[250px] pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Nama/kode barang">
+                    placeholder="Nama/Status">
             </div>
         </div>
     </div>
