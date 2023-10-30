@@ -9,6 +9,9 @@
                         No.
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Foto
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Nama
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -30,6 +33,9 @@
                         <th scope="row" class="px-6 py-4">
                             {{ $loop->iteration }}
                         </th>
+                        <td class="px-6 py-4">
+                            {{ $user->fotoProfile }}
+                        </td>
                         <td wire:key="{{ $user->id }}" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                             {{ $user->name }}
                         </td>
