@@ -15,10 +15,20 @@
                 @enderror
             </div>
             <div class="mb-6">
+                <label for="stokawal" class="block mb-2 text-sm font-medium">
+                    Stok Awal</label>
+                <input type="number" id="stokawal" name="stokawal"
+                    class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required value="{{ old('stokawal', $barang->stokawal) }}">
+                @error('stok')
+                    <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-6">
                 <label for="stok" class="block mb-2 text-sm font-medium">
-                    Stok</label>
+                    Sisa Stok</label>
                 <input type="number" id="stok" name="stok"
-                    class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('stok') border-red-600 @enderror"
+                    class="bg-white border border-gray-300 text-sm rounded-lg text-gray-800 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     required value="{{ old('stok', $barang->stok) }}">
                 @error('stok')
                     <p class="mt-2 text-xs text-red-600 dark:text-red-400 font-medium">{{ $message }}</p>

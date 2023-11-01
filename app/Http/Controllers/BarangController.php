@@ -31,6 +31,7 @@ class BarangController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
+            'stokawal' => 'required',
             'stok' => 'required',
             'kode_barang' => 'required|unique:barangs',
             'satuan' => 'required',
@@ -62,9 +63,10 @@ class BarangController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Barang $barang)
-    {
+    {   
         $rules = [
             'nama' => 'required',
+            'stokawal' => 'required',
             'stok' => 'required',
             'satuan' => 'required',
         ];
