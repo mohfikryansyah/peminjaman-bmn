@@ -95,7 +95,7 @@ class PeminjamController extends Controller
         $kodeBarang2 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang2'])->first();
         $kodeBarang3 = Barang::where('kode_barang', $validatedPinjamBarang['kode_barang3'])->first();
 
-        if (empty($confirm->foto)) {
+        if ($request->hasFile('foto_barang')) {
             $confirm
                 ->fill([
                     'foto_barang' => ($validatedPinjamBarang['foto_barang'] = $request->file('foto_barang')->store('foto-barang')),
