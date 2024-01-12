@@ -35,21 +35,55 @@
             @enderror
         </div>
         <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama anda</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
             <input type="text" id="name" name="name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
-                value="{{ old('email', $user->name) }}" autocomplete="name">
+                value="{{ old('name', $user->name) }}" autocomplete="name">
             @error('name')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
         <div class="mb-6">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
-                anda</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
             <input type="email" id="email" name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
                 required value="{{ old('email', $user->email) }}" autocomplete="email">
         </div>
+        @role('PEGAWAI')
+        <div class="mb-6">
+            <label for="kasie_id"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seksi</label>
+            <select id="kasie_id" name="kasie_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option disabled selected>-- Pilih Seksi --</option>
+                @foreach ($kasie as $k)
+                    @if (old('kasie_id', $user->kasie_id) === $k->id)
+                        <option value="{{ $k->id }}" selected>{{ $k->seksi }}</option>
+                    @else
+                        <option value="{{ $k->id }}">{{ $k->seksi }}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-6">
+            <label for="nip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+            <input type="number" min="0" id="nip" name="nip"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
+                value="{{ old('nip', $user->nip) }}" autocomplete="nip">
+            @error('nip')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-6">
+            <label for="pangkat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pangkat/Jabatan</label>
+            <input type="text" id="pangkat" name="pangkat"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
+                value="{{ old('pangkat', $user->pangkat) }}" autocomplete="pangkat">
+            @error('pangkat')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+        @endrole
         <div class="flex items-center gap-4">
             <button type="submit"
                 class="text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">Save</button>

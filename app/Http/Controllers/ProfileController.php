@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Kasie;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -19,6 +20,7 @@ class ProfileController extends Controller
     {
         return view('auth.user.profile', [
             'user' => $request->user(),
+            'kasie' => Kasie::all()
         ]);
     }
 
@@ -45,6 +47,8 @@ class ProfileController extends Controller
         }
 
         $user->fill($data);
+
+        // dd($data);
 
         $user->save();
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

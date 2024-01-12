@@ -150,7 +150,7 @@
                         </td>
                         <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
                             <a class="text-blue-500"
-                                href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->nama }}</a>
+                                href="{{ route('pinjam.show', $peminjam->id) }}">{{ $peminjam->user->name }}</a>
                         </th>
                         <td class="px-6 py-4 truncate">
                             {{ $peminjam->tgl_pinjam }}

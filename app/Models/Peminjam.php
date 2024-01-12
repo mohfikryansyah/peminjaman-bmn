@@ -12,6 +12,7 @@ class Peminjam extends Model
 
     protected $guarded = ['id'];
     protected $hidden = ['kode_barang'];
+    // protected $fillable = ['']
 
     public function hitungSelisihTanggal()
     {
@@ -31,5 +32,10 @@ class Peminjam extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kasie()
+    {
+        return $this->belongsTo(Kasie::class, 'kasie_id');
     }
 }

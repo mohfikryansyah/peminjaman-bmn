@@ -14,13 +14,7 @@ return new class extends Migration
         Schema::create('peminjams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('nama');
-            $table->string('email');
-            $table->string('nip');
-            $table->string('pangkat');
-            $table->string('seksi');
-            $table->string('namaKasie');
-            $table->string('nipKasie');
+            $table->foreignId('kasie_id');
             $table->string('noSPT');
             $table->date('tgl_pinjam')->nullable();
             $table->date('tgl_pengembalian')->format();

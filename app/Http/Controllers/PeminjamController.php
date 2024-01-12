@@ -12,13 +12,17 @@ use App\Exports\PeminjamExport;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Cache;
-use PhpParser\Node\Stmt\TryCatch;
 
 class PeminjamController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->fotoProfile) {
+        $fotoProfile = !auth()->user()->fotoProfile;
+        $nip = !auth()->user()->nip;
+        $pangkat = !auth()->user()->pangkat;
+        $kasie_id = !auth()->user()->kasie_id;
+
+        if ($fotoProfile || $nip || $pangkat || $kasie_id) {
             return redirect(route('profile.edit'))->with('profile', 'Silahkan lengkapi foto profil anda untuk dapat melakukan peminjaman barang');
         }
 
@@ -79,7 +83,6 @@ class PeminjamController extends Controller
 
     public function konfirmasiPeminjam(Request $request, $id)
     {
-        // dd($request->all());
         $validatedPinjamBarang = [
             'kode_barang1' => $request->input('kode_barang1'),
             'kode_barang2' => $request->input('kode_barang2'),

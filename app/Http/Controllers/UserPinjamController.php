@@ -17,25 +17,14 @@ class UserPinjamController extends Controller
 
     public function peminjaman(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'nama' => 'required',
-            'nip' => 'required',
-            'pangkat' => 'required',
-            'seksi' => 'required',
-            'namaKasie' => 'required',
-            'nipKasie' => 'required|numeric',
             'noSPT' => 'required|numeric',
             'tgl_pengembalian' => 'required',
             'suratImage' => 'required|mimes:pdf|file|max:1024',
         ]);
 
         $validatedPinjamBarang = [
-            'nama' => ucwords($request->input('nama')),
-            'nip' => $request->input('nip'),
-            'pangkat' => ucwords($request->input('pangkat')),
-            'seksi' => ucwords($request->input('seksi')),
-            'namaKasie' => ucwords($request->input('namaKasie')),
-            'nipKasie' => $request->input('nipKasie'),
             'noSPT' => $request->input('noSPT'),
             'tgl_pengembalian' => $request->input('tgl_pengembalian'),
             'barang1' => $request->input('barang1'),
@@ -49,7 +38,7 @@ class UserPinjamController extends Controller
         
         $validatedPinjamBarang['suratImage'] = $request->file('suratImage')->store('surat-images');
         $validatedPinjamBarang['user_id'] = auth()->user()->id;
-        $validatedPinjamBarang['email'] = auth()->user()->email;
+        $validatedPinjamBarang['kasie_id'] = auth()->user()->kasie_id;
         $validatedPinjamBarang['tgl_pinjam'] = Carbon::today();
         $validatedPinjamBarang['status'] = 'Menunggu';
 

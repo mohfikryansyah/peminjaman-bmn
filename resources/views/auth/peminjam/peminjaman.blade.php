@@ -22,7 +22,7 @@
                 @method('put')
                 @csrf
                 {{-- <div class="lg:grid lg:grid-cols-2 lg:gap-4"> --}}
-                <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5">
+                {{-- <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5">
                     <div class="mb-3 col-span-2">
                         <label for="nama" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Nama
                             Peminjam<span class="text-red-500">*</span></label>
@@ -89,9 +89,9 @@
                             class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             required value="{{ old('nipKasie') }}" readonly>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5 mt-5">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-xl p-5">
                     <div class="mb-3 col-span-1">
                         <label for="barang1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barang
                             Pertama</label>

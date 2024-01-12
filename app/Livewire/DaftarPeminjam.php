@@ -28,7 +28,7 @@ class DaftarPeminjam extends Component
     {
         return view('livewire.daftar-peminjam', [
             'peminjams' => Peminjam::where('status', 'like', '%'.$this->search.'%')
-                            ->orWhere('nama', 'like', '%'.$this->search.'%')
+                            // ->orWhere('nama', 'like', '%'.$this->search.'%')
                             ->simplePaginate(7)
         ]);
     }

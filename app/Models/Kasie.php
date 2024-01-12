@@ -11,4 +11,9 @@ class Kasie extends Model
 
     protected $guarded = ['id'];
     protected $fillable = ['nama', 'nip', 'seksi'];
+
+    public function kasie()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
 }

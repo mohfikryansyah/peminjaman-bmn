@@ -16,6 +16,10 @@
         @endif
     </p>
 
+    <select class="js-example-basic-single" name="state">
+        <option value="AL">Alabama</option>
+        <option value="WY">Wyoming</option>
+    </select>
 
     <div class="md:grid md:grid-cols-3 md:gap-5 mt-5">
         <div class="col-span-2">
@@ -24,21 +28,21 @@
                     <label for="nama" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Nama</label>
                     <input type="text" id="nama" name="nama"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->nama }}" readonly>
+                        value="{{ $peminjam->user->name }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="email"
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Email</label>
                     <input type="text" id="email" name="email"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->email }}" readonly>
+                        value="{{ $peminjam->user->email }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="nip"
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NIP/NIK</label>
                     <input type="number" id="nip" name="nip"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->nip }}" readonly>
+                        value="{{ $peminjam->user->nip }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="pangkat" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Pangkat
@@ -46,7 +50,7 @@
                         Jabatan</label>
                     <input type="text" id="pangkat" name="pangkat"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->pangkat }}" readonly>
+                        value="{{ $peminjam->user->pangkat }}" readonly>
                 </div>
             </div>
 
@@ -56,21 +60,21 @@
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Seksi</label>
                     <input type="text" id="seksi" name="seksi"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required value="{{ $peminjam->seksi }}" readonly>
+                        required value="{{ $peminjam->kasie->seksi }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="namaKasie" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Nama
                         Kasie</label>
                     <input type="text" id="namaKasie" name="namaKasie"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required value="{{ $peminjam->namaKasie }}" readonly>
+                        required value="{{ $peminjam->kasie->namaKasie }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="nipKasie" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">NIP
                         Kasie</label>
                     <input type="text" id="nipKasie" name="nipKasie"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        required value="{{ $peminjam->nipKasie }}" readonly>
+                        required value="{{ $peminjam->kasie->nipKasie }}" readonly>
                 </div>
             </div>
         </div>
@@ -82,12 +86,14 @@
                         src="{{ asset('storage/' . $peminjam->user->fotoProfile) }}">
                 </a>
             </div>
-            <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-[2/3] mt-5 lg:mt-0">
-                <a href="{{ url('storage/' . $peminjam->foto_barang) }}" target="_blank">
-                    <img class="img-preview aspect-[2/3] border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
-                        src="{{ asset('storage/' . $peminjam->foto_barang) }}">
-                </a>
-            </div>
+            @if (!empty($peminjam->foto_barang))
+                <div id="img-profile" class="mx-auto w-40 overflow-hidden right-60 rounded-xl aspect-[2/3] mt-5 lg:mt-0">
+                    <a href="{{ url('storage/' . $peminjam->foto_barang) }}" target="_blank">
+                        <img class="img-preview aspect-[2/3] border border-gray-400 h-auto max-w-full rounded-xl mb-3 hover:scale-105 duration-500"
+                            src="{{ asset('storage/' . $peminjam->foto_barang) }}">
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -126,15 +132,26 @@
                         value="{{ $peminjam->stokbarang1 }}" readonly>
                 </div>
                 <div class="mb-3 col-span-1">
-                    <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
+                    {{-- <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
                         Barang</label>
                     <input type="number" id="kodebarang1" name="kode_barang1"
                         class=" border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang1 ? 'bg-gray-200' : 'bg-gray-50' }} "
                         min="0" value="{{ old('kode_barang1', $peminjam->kode_barang1) }}"
                         {{ $peminjam->kode_barang1 ? 'readOnly' : '' }}>
-                        @if(Session::get('fail1'))
+                    @if (Session::get('fail1'))
                         <p class="text-xs text-red-500">{{ Session::get('fail1') }}</p>
-                        @endif
+                    @endif --}}
+
+                    {{-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
+                        option</label>
+                    <select id="kodebarang" name="kodebarang1"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </select> --}}
+                    <select class="js-example-basic-single" id="kodebarang" name="state">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seri_barang1"
@@ -169,9 +186,9 @@
                         class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang2 ? 'bg-gray-200' : 'bg-gray-50' }}"
                         min="0" value="{{ old('kode_barang2', $peminjam->kode_barang2) }}"
                         {{ $peminjam->kode_barang2 ? 'readOnly' : '' }}>
-                        @if(Session::get('fail2'))
+                    @if (Session::get('fail2'))
                         <p class="text-xs text-red-500">{{ Session::get('fail2') }}</p>
-                        @endif
+                    @endif
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seribarang2"
@@ -205,9 +222,9 @@
                         class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang3 ? 'bg-gray-200' : 'bg-gray-50' }}"
                         min="0" value="{{ old('kode_barang3', $peminjam->kode_barang3) }}"
                         {{ $peminjam->kode_barang3 ? 'readOnly' : '' }}>
-                        @if(Session::get('fail3'))
+                    @if (Session::get('fail3'))
                         <p class="text-xs text-red-500">{{ Session::get('fail3') }}</p>
-                        @endif
+                    @endif
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seribarang3"
@@ -219,9 +236,28 @@
                 </div>
             @endif
         </div>
-        <button type="submit"
-            class="mt-5 p-2 mr-1 text-base font-medium text-center uppercase inline-flex items-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300">
-            Konfirmasi
-        </button>
+        <div class="flex">
+            <button type="submit"
+                class="mt-5 p-2 mr-1 text-base font-medium text-center uppercase inline-flex items-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300">
+                Konfirmasi
+            </button>
     </form>
+    <form action="{{ route('pinjam.tolak', ['coba' => $peminjam->id]) }}" method="post">
+        @csrf
+        @method('patch')
+        <button type="submit"
+            class="mt-5 p-2 mr-1 text-base font-medium text-center uppercase inline-flex items-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300">TOLAK</button>
+    </form>
+    </div>
+    {{-- @push('select2') --}}
+        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" type="text/javascript"></script> --}}
+        <script>
+            $(document).ready(function() {
+                $('#kodebarang').select2({
+
+                });
+            });
+        </script>
+    {{-- @endpush --}}
+
 @endsection
