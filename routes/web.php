@@ -65,6 +65,7 @@ Route::middleware('auth', 'role:ADMIN')->group(function () {
     Route::patch('/dashboard/daftar-peminjam/{id}', [PeminjamController::class, 'konfirmasiPeminjam'])->name('pinjam.confirm');
     Route::patch('/dashboard/daftar-peminjam/tolak/{coba}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
     Route::patch('/dashboard/daftar-peminjam/selesai/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
+    Route::get('/dashboard/kode-barang', [PeminjamController::class, 'getKodebarang'])->name('pinjam.kodebarang');
 
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::post('/toggle-user-status/{user}', [UserController::class, 'toggleStatus']);

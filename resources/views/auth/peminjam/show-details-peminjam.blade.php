@@ -16,11 +16,6 @@
         @endif
     </p>
 
-    <select class="js-example-basic-single" name="state">
-        <option value="AL">Alabama</option>
-        <option value="WY">Wyoming</option>
-    </select>
-
     <div class="md:grid md:grid-cols-3 md:gap-5 mt-5">
         <div class="col-span-2">
             <div class="lg:grid lg:grid-cols-2 lg:gap-4 bg-white border border-gray-300 rounded-lg p-5 shadow-lg">
@@ -142,14 +137,14 @@
                         <p class="text-xs text-red-500">{{ Session::get('fail1') }}</p>
                     @endif --}}
 
-                    {{-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                        option</label>
-                    <select id="kodebarang" name="kodebarang1"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </select> --}}
-                    <select class="js-example-basic-single" id="kodebarang" name="state">
-                        <option value="AL">Alabama</option>
-                        <option value="WY">Wyoming</option>
+                    <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
+                        Barang</label>
+                    <select id="kodebarang1" name="kode_barang1" class="form-control">
+                            @if (old('kodebarang1', $peminjam->kode_barang1) === $peminjam->kode_barang1)
+                                <option value="{{ $peminjam->kode_barang1 }}" selected>{{ $peminjam->kode_barang1 }} - {{ $peminjam->barang1 }}</option>
+                            @else
+                                <option value="{{ $k->id }}">{{ $k->seksi }}</option>
+                            @endif
                     </select>
 
                 </div>
@@ -249,15 +244,29 @@
             class="mt-5 p-2 mr-1 text-base font-medium text-center uppercase inline-flex items-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300">TOLAK</button>
     </form>
     </div>
-    {{-- @push('select2') --}}
-        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" type="text/javascript"></script> --}}
-        <script>
+    @push('select2')
+        <script type="text/javascript">
             $(document).ready(function() {
-                $('#kodebarang').select2({
-
+                $('#kodebarang1').select2({
+                    placeholder: "Cari kode barang...",
+                    ajax: {
+                        url: "{{ route('pinjam.kodebarang') }}",
+                        processResults: function({
+                            data
+                        }) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.kode_barang,
+                                        text: item.kode_barang + ' - ' + item.nama
+                                    }
+                                })
+                            }
+                        }
+                    }
                 });
             });
         </script>
-    {{-- @endpush --}}
+    @endpush
 
 @endsection

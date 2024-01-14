@@ -32,11 +32,19 @@ class PeminjamController extends Controller
         ]);
     }
 
-    public function getNamaNip($seksi)
+    // public function getNamaNip($seksi)
+    // {
+    //     $data = Kasie::where('seksi', $seksi)->first();
+    //     return response()->json($data);
+    // }
+
+    public function getKodebarang()
     {
-        $data = Kasie::where('seksi', $seksi)->first();
-        return response()->json($data);
+        $kodebarang = Barang::where('nama', 'LIKE', '%'.request('q').'%')->orWhere('id', 'LIKE', '%'.request('q').'%')->paginate(10);
+        return response()->json($kodebarang);
     }
+
+
 
     public function show(Peminjam $peminjam)
     {
@@ -52,6 +60,7 @@ class PeminjamController extends Controller
 
     public function hitungSelisihAllData()
     {
+        
         $allPeminjam = Peminjam::all();
         foreach ($allPeminjam as $peminjam) {
             $selisihHari = $peminjam->hitungSelisihTanggal();
