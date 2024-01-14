@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BPKHTL-XV</title>
+    <script src="{{ asset('build/assets/app-c8ff57e5.js') }}"></script>
     
     <!-- ✅ Load CSS file for Select2 -->
     <link
@@ -36,8 +37,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app-0230999c.css') }}"> --}}
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    
+    <link rel="stylesheet" href="{{ asset('build/assets/app-0230999c.css') }}">
     {{-- @livewireStyles --}}
 </head>
 
