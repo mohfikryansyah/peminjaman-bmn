@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Models\Peminjam;
+use App\Mail\InfoPengembalian;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +18,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:send-email-notification')->daily();
+        $schedule->command('app:send-email-notification')->everySecond();
+        
+        
     }
 
     /**

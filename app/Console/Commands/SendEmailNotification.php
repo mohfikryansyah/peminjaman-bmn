@@ -7,6 +7,7 @@ use App\Models\Peminjam;
 use App\Mail\InfoPengembalian;
 use Illuminate\Support\Facades\Mail;
 
+
 class SendEmailNotification extends Command
 {
     /**
@@ -39,7 +40,7 @@ class SendEmailNotification extends Command
                     'selisih' => $selisihHari,
                 ];
 
-                Mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
+                mail::to($peminjam->user->email)->send(new InfoPengembalian($infoMail));
 
                 $this->info('Email sent successfully!');
             }

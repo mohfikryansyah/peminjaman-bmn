@@ -58,34 +58,35 @@ class PeminjamController extends Controller
         return Excel::download(new PeminjamExport(), 'peminjam.xlsx');
     }
 
-    public function hitungSelisihAllData()
-    {
+    // public function hitungSelisihAllData()
+    // {
         
-        $allPeminjam = Peminjam::all();
-        foreach ($allPeminjam as $peminjam) {
-            $selisihHari = $peminjam->hitungSelisihTanggal();
+    //     $allPeminjam = Peminjam::all();
+    //     foreach ($allPeminjam as $peminjam) {
+    //         $selisihHari = $peminjam->hitungSelisihTanggal();
 
-            if ($selisihHari <= 3 && $peminjam->status == 'Disetujui') {
-                $infoMail = [
-                    'title' => 'Halo, ' . $peminjam->nama,
-                    'barang' => $peminjam->barang,
-                    'selisih' => $selisihHari,
-                ];
+    //         if ($selisihHari <= 3 && $peminjam->status == 'Disetujui') {
+    //             $infoMail = [
+    //                 'title' => 'Halo, ' . $peminjam->nama,
+    //                 'barang' => $peminjam->barang,
+    //                 'selisih' => $selisihHari,
+    //             ];
 
-                // dd($selisihHari);
-                $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
+    //             // dd($selisihHari);
+    //             $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
 
-                if (!Cache::has($cacheMail)) {
-                    mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
-                    Cache::put($cacheMail, true, now()->endOfDay());
-                }
-            }
-        }
-    }
+    //             dd($peminjam->user->email);
+    //             if (!Cache::has($cacheMail)) {
+    //                 mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
+    //                 Cache::put($cacheMail, true, now()->endOfDay());
+    //             }
+    //         }
+    //     }
+    // }
 
     public function daftarPeminjam()
     {
-        $this->hitungSelisihAllData();
+        // $this->hitungSelisihAllData();
 
         return view('auth.daftar-peminjam');
     }
