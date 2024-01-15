@@ -114,7 +114,7 @@
     <div class="lg:flex lg:space-x-3">
 
         <a href="/dashboard/daftar-peminjam/export"
-            class="px-3 py-2 text-xs font-medium text-center w-full lg:w-28 inline-flex justify-center items-center text-white bg-slate-800 rounded-lg hover:bg-blue-800">
+            class="p-3 text-xs font-medium text-center w-full lg:w-28 inline-flex justify-center items-center text-white bg-slate-800 rounded-lg hover:bg-blue-800 lg:mb-2 mb-0">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
                 viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
@@ -133,7 +133,7 @@
                     </svg>
                 </div>
                 <input type="search" id="search" wire:model.live="search"
-                    class="block p-2 w-full lg:w-[250px] pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
+                    class="block p-2.5 w-full lg:w-[250px] pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Nama/Status">
             </div>
         </div>
