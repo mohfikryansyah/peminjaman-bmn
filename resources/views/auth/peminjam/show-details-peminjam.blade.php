@@ -264,6 +264,50 @@
                     }
                 });
             });
+
+            $(document).ready(function() {
+                $('#kodebarang2').select2({
+                    placeholder: "Cari kode barang...",
+                    ajax: {
+                        url: "{{ route('pinjam.kodebarang') }}",
+                        processResults: function({
+                            data
+                        }) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.kode_barang,
+                                        text: item.kode_barang + ' - ' + item.nama
+                                    }
+                                })
+                            }
+                        }
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                $('#kodebarang3').select2({
+                    placeholder: "Cari kode barang...",
+                    ajax: {
+                        url: "{{ route('pinjam.kodebarang') }}",
+                        processResults: function({
+                            data
+                        }) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.kode_barang,
+                                        text: item.kode_barang + ' - ' + item.nama
+                                    }
+                                })
+                            }
+                        }
+                    }
+                });
+            });
+
+            
         </script>
     @endpush
 
