@@ -80,34 +80,36 @@
         </div>
     @endif
 
-    <div class="grid lg:grid-cols-4 grid-flow-row lg:gap-4 gap-2 w-full mb-5">
+    @role(['KASUBAG'])
+        <div class="grid lg:grid-cols-4 grid-flow-row lg:gap-4 gap-2 w-full mb-5">
 
-        <a
-            class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $totalBarang->count() }}
-            </h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Total jenis barang</p>
-        </a>
-        <a
-            class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ $totalBarangDipinjam->count() }}</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Barang sedang dipinjam</p>
-        </a>
-        <a
-            class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ $totalBarangSelesaiDipinjam->count() }}</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Barang telah dikembalikan</p>
-        </a>
-        <a
-            class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ $totalBarangMenunggu->count() }}</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Orang menunggu dikonfirmasi</p>
-        </a>
+            <a
+                class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $totalBarang->count() }}
+                </h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Total jenis barang</p>
+            </a>
+            <a
+                class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ $totalBarangDipinjam->count() }}</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Barang sedang dipinjam</p>
+            </a>
+            <a
+                class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ $totalBarangSelesaiDipinjam->count() }}</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Barang telah dikembalikan</p>
+            </a>
+            <a
+                class="block cursor-default w-full lg:max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ $totalBarangMenunggu->count() }}</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Orang menunggu dikonfirmasi</p>
+            </a>
 
-    </div>
+        </div>
+    @endrole
 
     <div class="lg:flex lg:space-x-3">
 
