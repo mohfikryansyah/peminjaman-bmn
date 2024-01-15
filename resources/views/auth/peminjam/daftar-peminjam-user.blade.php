@@ -64,7 +64,17 @@
                         </th>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
-                                Barang
+                                Barang Pertama
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Barang Kedua
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Barang Ketiga
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -82,10 +92,16 @@
                     @forelse ($peminjams as $peminjam)
                         <tr class="bg-white border-b">
                             <th scope="row" class="px-6 py-4 font-semibold text-gray-900 whitespace-nowrap">
-                                {{ $peminjam->nama }}
+                                {{ $peminjam->user->name }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $peminjam->barang }}
+                                {{ $peminjam->barang1 }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $peminjam->barang2 }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $peminjam->barang3 }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $peminjam->tgl_pinjam }}
