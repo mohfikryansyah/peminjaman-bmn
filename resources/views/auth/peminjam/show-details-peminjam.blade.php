@@ -127,16 +127,6 @@
                         value="{{ $peminjam->stokbarang1 }}" readonly>
                 </div>
                 <div class="mb-3 col-span-1">
-                    {{-- <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
-                        Barang</label>
-                    <input type="number" id="kodebarang1" name="kode_barang1"
-                        class=" border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang1 ? 'bg-gray-200' : 'bg-gray-50' }} "
-                        min="0" value="{{ old('kode_barang1', $peminjam->kode_barang1) }}"
-                        {{ $peminjam->kode_barang1 ? 'readOnly' : '' }}>
-                    @if (Session::get('fail1'))
-                        <p class="text-xs text-red-500">{{ Session::get('fail1') }}</p>
-                    @endif --}}
-
                     <label for="kodebarang1" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
                         Barang</label>
                     <select id="kodebarang1" name="kode_barang1" class="form-control">
@@ -146,7 +136,9 @@
                                 <option value="{{ $k->id }}">{{ $k->seksi }}</option>
                             @endif
                     </select>
-
+                    @if (Session::get('fail1'))
+                        <p class="text-xs text-red-500">{{ Session::get('fail1') }}</p>
+                    @endif 
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seri_barang1"
@@ -177,13 +169,16 @@
                 <div class="mb-3 col-span-1">
                     <label for="kodebarang2" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
                         Barang</label>
-                    <input type="number" id="kodebarang2" name="kode_barang2"
-                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang2 ? 'bg-gray-200' : 'bg-gray-50' }}"
-                        min="0" value="{{ old('kode_barang2', $peminjam->kode_barang2) }}"
-                        {{ $peminjam->kode_barang2 ? 'readOnly' : '' }}>
+                    <select id="kodebarang2" name="kode_barang2" class="form-control">
+                            @if (old('kodebarang2', $peminjam->kode_barang2) === $peminjam->kode_barang2)
+                                <option value="{{ $peminjam->kode_barang2 }}" selected>{{ $peminjam->kode_barang2 }} - {{ $peminjam->barang2 }}</option>
+                            @else
+                                <option value="{{ $k->id }}">{{ $k->seksi }}</option>
+                            @endif
+                    </select>
                     @if (Session::get('fail2'))
                         <p class="text-xs text-red-500">{{ Session::get('fail2') }}</p>
-                    @endif
+                    @endif 
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seribarang2"
@@ -213,13 +208,16 @@
                 <div class="mb-3 col-span-1">
                     <label for="kodebarang3" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Kode
                         Barang</label>
-                    <input type="number" id="kodebarang3" name="kode_barang3"
-                        class="border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 {{ $peminjam->kode_barang3 ? 'bg-gray-200' : 'bg-gray-50' }}"
-                        min="0" value="{{ old('kode_barang3', $peminjam->kode_barang3) }}"
-                        {{ $peminjam->kode_barang3 ? 'readOnly' : '' }}>
+                    <select id="kodebarang3" name="kode_barang3" class="form-control">
+                            @if (old('kodebarang3', $peminjam->kode_barang3) === $peminjam->kode_barang3)
+                                <option value="{{ $peminjam->kode_barang3 }}" selected>{{ $peminjam->kode_barang3 }} - {{ $peminjam->barang3 }}</option>
+                            @else
+                                <option value="{{ $k->id }}">{{ $k->seksi }}</option>
+                            @endif
+                    </select>
                     @if (Session::get('fail3'))
                         <p class="text-xs text-red-500">{{ Session::get('fail3') }}</p>
-                    @endif
+                    @endif 
                 </div>
                 <div class="mb-3 col-span-1">
                     <label for="seribarang3"

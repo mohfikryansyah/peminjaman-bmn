@@ -318,7 +318,7 @@ class DatabaseSeeder extends Seeder
             'satuan' => 'Buah',
         ]);
         Barang::create([
-            'nama' => 'Antenna Relay',
+            'nama' => 'Antena Relay',
             'stok' => 6,
             'stokawal' => 6,
             'kode_barang' => 3080158021,

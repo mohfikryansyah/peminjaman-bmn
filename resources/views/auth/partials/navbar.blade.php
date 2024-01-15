@@ -13,7 +13,7 @@
                         </path>
                     </svg>
                 </button>
-                <a href="https://bpkhtl15-gorontalo.id/" class="flex ml-2 md:mr-24">
+                <a href="https://bmn.bpkhtl15gorontalo.com/" class="flex ml-2 md:mr-24">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg/900px-Logo_of_the_Ministry_of_Environmental_Affairs_and_Forestry_of_the_Republic_of_Indonesia.svg.png"
                         class="h-8 mr-3" alt="FlowBite Logo" />
                     <span
