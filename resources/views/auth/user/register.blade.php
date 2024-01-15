@@ -16,8 +16,8 @@
     @endif
     <h1 class="text-2xl font-semibold mb-5">Tambah User</h1>
     <div class="w-full max-w-xl p-6 border border-gray-200 rounded-lg shadowq">
-        <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">Informasi Profil</h5>
-        <p class="mb-8 font-normal text-sm text-gray-500">Perbarui informasi akun dan email anda</p>
+        <h5 class="mb-1 text-lg font-bold tracking-wider text-gray-900 dark:text-white">Form Penambahan User</h5>
+        <p class="mb-8 font-normal text-sm text-gray-500">Tambahkan akun baru dengan email yang aktif.</p>
         <form class="mt-8 space-y-6" method="POST" action="{{ route('register') }}">
             @csrf
             <select id="role" name="role"
