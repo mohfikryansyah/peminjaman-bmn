@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BPKHTL-XV</title>
-    <script src="{{ asset('build/assets/app-c8ff57e5.js') }}"></script>
     
     <!-- ✅ Load CSS file for Select2 -->
     <link
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
       rel="stylesheet"
     />
+    
+    {{-- <script defer src="{{ asset('build/assets/app-c8ff57e5.js') }}"></script> --}}
 
     <!-- ✅ load jQuery ✅ -->
     <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
     ></script>
-
+    
     <!-- ✅ load JS for Select2 ✅ -->
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
@@ -39,8 +40,8 @@
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     
-    <link rel="stylesheet" href="{{ asset('build/assets/app-0230999c.css') }}">
-    {{-- @livewireStyles --}}
+    <link rel="stylesheet" href="{{ asset('build/assets/app-3639c6bf.css') }}" data-navigate-track="reload"/>
+    <script type="module" src="{{ asset('build/assets/app-c8ff57e5.js') }}" data-navigate-track="reload"></script> 
 </head>
 
 <body class="font-poppins">

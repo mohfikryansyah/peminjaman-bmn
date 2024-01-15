@@ -24,14 +24,14 @@
                 <div class="flex items-center ml-3">
                     <div>
                         <button type="button"
-                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            class="flex text-sm bg-gray-800 rounded-full"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
                             @if (auth()->user()->fotoProfile)
                                 <img class="w-8 h-8 rounded-full"
                                     src="{{ asset('storage/' . auth()->user()->fotoProfile) }}" alt="user photo">
                             @else
-                                <span class="bg-white p-2 rounded-lg">Welcome, admin!</span>
+                                <span class="bg-white p-2 rounded-lg">Welcome, {{ auth()->user()->name }}</span>
                             @endif
                         </button>
                     </div>

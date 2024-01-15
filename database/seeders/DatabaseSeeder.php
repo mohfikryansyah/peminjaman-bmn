@@ -19,17 +19,26 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'Administrator',
             'email' => 'admin@bpkhtl15gorontalo.com',
             'password' => 'bpkhtl!23',
             'verified' => true,
         ]);
-        \App\Models\User::factory()->create([
+
+        $kasubag = User::factory()->create([
             'name' => 'Fiqriansyah',
             'email' => 'moh.fikryansyah@gmail.com',
             'password' => 'fiqriansyah2001',
+            'verified' => true,
         ]);
+
+        Role::create(['name' => 'ADMIN']);
+        Role::create(['name' => 'PEGAWAI']);
+        Role::create(['name' => 'KASUBAG']);
+        
+        $admin->assignRole('ADMIN');
+        $kasubag->assignRole('KASUBAG');
 
         Kasie::create([
             'namaKasie' => 'La Ode Bahtiar, S.Hut, M.Si',
@@ -46,14 +55,6 @@ class DatabaseSeeder extends Seeder
             'nipKasie' => 197910041998032001,
             'seksi' => 'Tata Usaha',
         ]);
-
-        Role::create(['name' => 'ADMIN']);
-        Role::create(['name' => 'PEGAWAI']);
-
-        $admin = User::find(1);
-        $user = User::find(2);
-        $admin->assignRole('ADMIN');
-        $user->assignRole('PEGAWAI');
 
         Barang::create([
             'nama' => 'Sepeda Motor',

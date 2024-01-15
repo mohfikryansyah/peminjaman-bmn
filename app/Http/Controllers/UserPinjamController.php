@@ -3,15 +3,29 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 
 class UserPinjamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            if (!$user->hasAnyRole(['KASUBAG', 'PEGAWAI'])) {
+                abort(403, 'Unauthorized action.');
+            }
+
+            return $next($request);
+        });
+    }
+
     public function index()
-    {   
+    {
         return view('auth.peminjam.daftar-peminjam-user', [
-            'peminjams' => Peminjam::where('user_id', auth()->user()->id)->get()
+            'peminjams' => Peminjam::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 
@@ -35,7 +49,6 @@ class UserPinjamController extends Controller
             'stokbarang3' => $request->input('stokbarang3'),
         ];
 
-        
         $validatedPinjamBarang['suratImage'] = $request->file('suratImage')->store('surat-images');
         $validatedPinjamBarang['user_id'] = auth()->user()->id;
         $validatedPinjamBarang['kasie_id'] = auth()->user()->kasie_id;

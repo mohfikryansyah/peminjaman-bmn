@@ -20,7 +20,14 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.user.register');
+        $level = [
+            'kasubag' => 'KASUBAG',
+            'pegawai' => 'PEGAWAI',
+        ];
+
+        return view('auth.user.register', [
+            'level' => $level
+        ]);
     }
 
     /**
@@ -28,11 +35,11 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email:dns', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -42,12 +49,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('PEGAWAI');
+        $user->assignRole($request->role);
+
+        // dd($user);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        return back()->with('success', 'Berhasil menambahkan user!');
 
-        return redirect(RouteServiceProvider::HOME);
+        // Auth::login($user);
+
+        // return redirect(RouteServiceProvider::HOME);
     }
 }

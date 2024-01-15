@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kasie;
 use App\Models\Barang;
 use App\Models\Peminjam;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('auth.dashboard', [
         'totalBarang' => Barang::all(),
-        'totalBarangDipinjam' => Peminjam::where('status', 'like', "%Disetujui%")->get(),
-        'totalBarangSelesaiDipinjam' => Peminjam::where('status', 'like', "%Dikembalikan%")->get(),
-        'totalBarangMenunggu' => Peminjam::where('status', 'like', "%Menunggu%")->get(),
+        'totalBarangDipinjam' => Peminjam::where('status', 'like', '%Disetujui%')->get(),
+        'totalBarangSelesaiDipinjam' => Peminjam::where('status', 'like', '%Dikembalikan%')->get(),
+        'totalBarangMenunggu' => Peminjam::where('status', 'like', '%Menunggu%')->get(),
     ]);
 })->middleware(['auth', 'verified', 'status'])->name('dashboard');
 
@@ -44,21 +45,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:PEGAWAI', 'status'])->group(function () {
+Route::middleware(['auth', 'status'])->group(function () {
     Route::get('/dashboard/piminjaman-barang-user', [UserPinjamController::class, 'index'])->name('user.index');
+    Route::put('/dashboard/piminjaman-barang', [UserPinjamController::class, 'peminjaman'])->name('user.peminjaman');
+    Route::get('/dashboard/piminjaman-barang', function() {
+        $fotoProfile = !auth()->user()->fotoProfile;
+        $nip = !auth()->user()->nip;
+        $pangkat = !auth()->user()->pangkat;
+        $kasie_id = !auth()->user()->kasie_id;
+
+        if ($fotoProfile || $nip || $pangkat || $kasie_id) {
+            return redirect(route('profile.edit'))->with('profile', 'Silahkan lengkapi profil anda untuk dapat melakukan peminjaman barang');
+        }
+
+        return view('auth.peminjam.peminjaman', [
+            'barangs' => Barang::select('nama')->get(),
+            'kasie' => Kasie::all(),
+        ]);
+    })->name('pinjam.index');
 });
 
 Route::get('/get-nama-nip/{seksi}', [PeminjamController::class, 'getNamaNip']);
 
-Route::middleware(['auth', 'role:PEGAWAI', 'status'])->group(function () {
-    Route::get('/dashboard/piminjaman-barang', [PeminjamController::class, 'index'])->name('pinjam.index');
-});
-
-Route::middleware('auth', 'role:PEGAWAI', 'status')->group(function () {
-    Route::put('/dashboard/piminjaman-barang', [UserPinjamController::class, 'peminjaman'])->name('user.peminjaman');
-});
-
-Route::middleware('auth', 'role:ADMIN')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard/daftar-peminjam/details/{peminjam}', [PeminjamController::class, 'show'])->name('pinjam.show');
     Route::get('/dashboard/daftar-peminjam/export', [PeminjamController::class, 'export'])->name('pinjam.export');
     Route::get('/dashboard/daftar-peminjam', [PeminjamController::class, 'daftarPeminjam'])->name('pinjam.daftar');
@@ -66,14 +75,13 @@ Route::middleware('auth', 'role:ADMIN')->group(function () {
     Route::patch('/dashboard/daftar-peminjam/tolak/{coba}', [PeminjamController::class, 'tolakPeminjam'])->name('pinjam.tolak');
     Route::patch('/dashboard/daftar-peminjam/selesai/{id}', [PeminjamController::class, 'selesai'])->name('pinjam.selesai');
     Route::get('/dashboard/kode-barang', [PeminjamController::class, 'getKodebarang'])->name('pinjam.kodebarang');
-
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::post('/toggle-user-status/{user}', [UserController::class, 'toggleStatus']);
 });
 
 Route::get('/dashboard-guest', function () {
     if (!auth()->user()->verified) {
-        return view('auth.user.tidak-aktif'); // Ganti ini dengan tampilan yang sesuai
+        return view('auth.user.tidak-aktif');
     } else {
         return redirect()->to('/dashboard');
     }

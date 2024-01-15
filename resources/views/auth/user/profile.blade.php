@@ -6,7 +6,9 @@
         <div class="lg:col-span-2 col-span-3 lg:order-1 order-2">
             @include('auth.user.partials.update-profile')
             @include('auth.user.partials.update-password')
+            @role(['KASUBAG', 'PEGAWAI'])
             @include('auth.user.partials.delete-akun')
+            @endrole
         </div>
         <div class="lg:col-span-1 col-span-3 lg:order-2 order-1 lg:mx-0 mx-auto">
             <div id="img-profile" class="lg:absolute sm:w-56 overflow-hidden rounded-xl aspect-[4/6]">

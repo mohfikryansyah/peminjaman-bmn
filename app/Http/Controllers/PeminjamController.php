@@ -3,33 +3,32 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Kasie;
 use App\Models\Barang;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
-use App\Mail\InfoPengembalian;
 use App\Exports\PeminjamExport;
-use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Cache;
 
 class PeminjamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $id = auth()->user()->id;
+            $user = User::find($id);
+            if ($user->hasAnyRole(['PEGAWAI'])) {
+                abort(403, 'Unauthorized action.');
+            }
+
+            return $next($request);
+        });
+    }
+    
     public function index()
     {
-        $fotoProfile = !auth()->user()->fotoProfile;
-        $nip = !auth()->user()->nip;
-        $pangkat = !auth()->user()->pangkat;
-        $kasie_id = !auth()->user()->kasie_id;
-
-        if ($fotoProfile || $nip || $pangkat || $kasie_id) {
-            return redirect(route('profile.edit'))->with('profile', 'Silahkan lengkapi foto profil anda untuk dapat melakukan peminjaman barang');
-        }
-
-        return view('auth.peminjam.peminjaman', [
-            'barangs' => Barang::select('nama')->get(),
-            'kasie' => Kasie::all(),
-        ]);
+        //
     }
 
     // public function getNamaNip($seksi)
@@ -58,36 +57,8 @@ class PeminjamController extends Controller
         return Excel::download(new PeminjamExport(), 'peminjam.xlsx');
     }
 
-    // public function hitungSelisihAllData()
-    // {
-        
-    //     $allPeminjam = Peminjam::all();
-    //     foreach ($allPeminjam as $peminjam) {
-    //         $selisihHari = $peminjam->hitungSelisihTanggal();
-
-    //         if ($selisihHari <= 3 && $peminjam->status == 'Disetujui') {
-    //             $infoMail = [
-    //                 'title' => 'Halo, ' . $peminjam->nama,
-    //                 'barang' => $peminjam->barang,
-    //                 'selisih' => $selisihHari,
-    //             ];
-
-    //             // dd($selisihHari);
-    //             $cacheMail = 'Notifikasi terkirim ' . $peminjam->id;
-
-    //             dd($peminjam->user->email);
-    //             if (!Cache::has($cacheMail)) {
-    //                 mail::to($peminjam->email)->send(new InfoPengembalian($infoMail));
-    //                 Cache::put($cacheMail, true, now()->endOfDay());
-    //             }
-    //         }
-    //     }
-    // }
-
     public function daftarPeminjam()
     {
-        // $this->hitungSelisihAllData();
-
         return view('auth.daftar-peminjam');
     }
 

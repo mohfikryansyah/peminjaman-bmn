@@ -1,5 +1,8 @@
 @extends('auth.layouts.main')
 @section('content')
+<div class="mb-3">
+    <h1 class="sm:text-2xl text-lg font-semibold mb-5">History Peminjaman Anda</h1>
+</div>
     <div>
         @if (Session::get('BARANG_STORED'))
             <div id="alert-3"

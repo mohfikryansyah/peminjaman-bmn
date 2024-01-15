@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Barang;
 use Livewire\Component;
 use App\Models\Peminjam;
 use Livewire\Attributes\Url;
@@ -11,13 +12,11 @@ class DaftarPeminjam extends Component
 {
     use WithPagination;
 
-    #[Url()]
+    #[Url]
     public $sort = 'desc';
 
     #[Url(history: true)]
     public $search = '';
-
-    
 
     public function updatingSearch()
     {
@@ -27,9 +26,13 @@ class DaftarPeminjam extends Component
     public function render()
     {
         return view('livewire.daftar-peminjam', [
-            'peminjams' => Peminjam::where('status', 'like', '%'.$this->search.'%')
-                            // ->orWhere('nama', 'like', '%'.$this->search.'%')
-                            ->simplePaginate(7)
+            'peminjams' => Peminjam::where('status', 'like', '%' . $this->search . '%')
+                // ->orWhere('nama', 'like', '%'.$this->search.'%')
+                ->simplePaginate(7),
+            'totalBarang' => Barang::all(),
+            'totalBarangDipinjam' => Peminjam::where('status', 'like', '%Disetujui%')->get(),
+            'totalBarangSelesaiDipinjam' => Peminjam::where('status', 'like', '%Dikembalikan%')->get(),
+            'totalBarangMenunggu' => Peminjam::where('status', 'like', '%Menunggu%')->get(),
         ]);
     }
 }

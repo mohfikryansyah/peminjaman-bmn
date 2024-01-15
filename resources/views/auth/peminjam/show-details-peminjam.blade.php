@@ -30,7 +30,7 @@
                         class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white">Email</label>
                     <input type="text" id="email" name="email"
                         class="bg-gray-200 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        value="{{ $peminjam->user->email }}" readonly>
+                        value="{{ $peminjam->user->email }}" readonly autocomplete="email">
                 </div>
                 <div class="mb-3">
                     <label for="nip"
