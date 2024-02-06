@@ -17,8 +17,10 @@ class UserController extends Controller
     }
     public function index()
     {
+        // $asd = User::find(1);
+        // dd($asd->getRoleNames());
         return view('auth.users', [
-            'users' => User::all(),
+            'users' => User::with('roles')->get(),
         ]);
     }
 }

@@ -21,6 +21,7 @@ class ProfileController extends Controller
         return view('auth.user.profile', [
             'user' => $request->user(),
             'kasie' => Kasie::all()
+            
         ]);
     }
 

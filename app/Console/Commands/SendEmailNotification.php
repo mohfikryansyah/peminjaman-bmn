@@ -36,7 +36,9 @@ class SendEmailNotification extends Command
             if ($selisihHari <= 3 && $peminjam->status == 'Disetujui') {
                 $infoMail = [
                     'title' => 'Halo, ' . $peminjam->user->name,
-                    'barang' => $peminjam->barang1,
+                    'barang1' => $peminjam->barang1,
+                    'barang2' => $peminjam->barang2,
+                    'barang3' => $peminjam->barang3,
                     'selisih' => $selisihHari,
                 ];
 

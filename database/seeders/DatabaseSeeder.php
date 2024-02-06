@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'moh.fikryansyah@gmail.com',
             'password' => 'fiqriansyah2001',
             'verified' => true,
+            'kasie_id' => 4,
         ]);
 
         Role::create(['name' => 'ADMIN']);

@@ -111,9 +111,9 @@
         </div>
     @endrole
 
-    <div class="lg:flex lg:space-x-3">
+    <div class="lg:flex lg:space-x-3 space-x-0 space-y-3 lg:space-y-0">
 
-        <a href="/dashboard/daftar-peminjam/export"
+        <a href="{{ route('pinjam.export') }}"
             class="p-3 text-xs font-medium text-center w-full lg:w-28 inline-flex justify-center items-center text-white bg-slate-800 rounded-lg hover:bg-blue-800 lg:mb-2 mb-0">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="currentColor"
                 viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -138,7 +138,7 @@
             </div>
         </div>
     </div>
-    <div class="relative overflow-x-auto shadow-md rounded-lg mt-5">
+    <div class="relative overflow-x-auto shadow-md rounded-lg mt-4">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-white uppercase bg-slate-800 tracking-wider">
                 <tr>
@@ -230,7 +230,7 @@
                 @empty
                     <tr class="bg-white border-b">
                         <td colspan="8" class="px-4 py-6 text-center">
-                            Data tidak ditemukan
+                            Data tidak ditemukan.
                         </td>
                     </tr>
                 @endforelse

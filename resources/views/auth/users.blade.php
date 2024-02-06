@@ -18,6 +18,9 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Role
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Tanggal Register
                     </th>
                     @role('ADMIN')
@@ -29,6 +32,9 @@
             </thead>
             <tbody>
                 @forelse ($users->skip(1) as $index => $user)
+                @foreach ($user->roles as $role)
+                    
+                @endforeach
                     <tr class="bg-white border-b">
                         <th scope="row" class="px-6 py-4">
                             {{ $loop->iteration }}
@@ -47,6 +53,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->email }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $role->name }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->created_at }}

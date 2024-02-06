@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
@@ -23,7 +23,7 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
 
 
 @include('master.app')
@@ -36,13 +36,16 @@
                 class="h-16 mr-4" alt="BPKHTL" />
         </a>
         <!-- Card -->
-        <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow">
+        <div class="w-full max-w-xl p-6 space-y-2 sm:p-8 bg-white rounded-lg shadow">
             <h2 class="text-2xl uppercase font-bold text-gray-900">
-                Login
+                {{ __('Reset Password') }}
             </h2>
+            <div class="mb-4 text-sm text-gray-600">
+                {{ __('Lupa kata sandi Anda? Tidak masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirimkan email berisi tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru.') }}
+            </div>
             <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
-            <form class="mt-8 space-y-6" method="POST" action="{{ route('login') }}">
+            <x-auth-session-status class="mb-2" :status="session('status')" />
+            <form class="mt-8 space-y-6" method="POST" action="{{ route('password.email') }}">
                 @csrf
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>

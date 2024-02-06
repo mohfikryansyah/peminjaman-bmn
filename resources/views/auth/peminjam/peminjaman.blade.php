@@ -243,30 +243,4 @@
         class="mt-5 text-white shadow-sm bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
     </form>
 
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const seksiDropdown = document.getElementById('seksi');
-            const namaInput = document.getElementById('namaKasie');
-            const nipInput = document.getElementById('nipKasie');
-
-            seksiDropdown.addEventListener('change', function() {
-                const selectedSeksi = this.value;
-                if (selectedSeksi) {
-                    fetch(`/get-nama-nip/${selectedSeksi}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            // console.log('Selected Kasie :' . data.selectedSeksi);
-                            namaInput.value = data.namaKasie;
-                            nipInput.value = data.nipKasie;
-                        })
-                        .catch(error => console.error(error));
-                } else {
-                    namaInput.value = '';
-                    nipInput.value = '';
-                }
-            });
-        });
-    </script>
 @endsection

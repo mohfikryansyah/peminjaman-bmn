@@ -60,7 +60,6 @@ Route::middleware(['auth', 'status'])->group(function () {
 
         return view('auth.peminjam.peminjaman', [
             'barangs' => Barang::select('nama')->get(),
-            'kasie' => Kasie::all(),
         ]);
     })->name('pinjam.index');
 });

@@ -49,7 +49,7 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5"
                 required value="{{ old('email', $user->email) }}" autocomplete="email">
         </div>
-        @role('PEGAWAI')
+        @role(['PEGAWAI', 'KASUBAG'])
         <div class="mb-6">
             <label for="kasie_id"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seksi</label>
@@ -94,6 +94,30 @@
         </div>
     </form>
 
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const seksiDropdown = document.getElementById('seksi');
+            const namaInput = document.getElementById('namaKasie');
+            const nipInput = document.getElementById('nipKasie');
+
+            seksiDropdown.addEventListener('change', function() {
+                const selectedSeksi = this.value;
+                if (selectedSeksi) {
+                    fetch(`/get-nama-nip/${selectedSeksi}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // console.log('Selected Kasie :' . data.selectedSeksi);
+                            namaInput.value = data.namaKasie;
+                            nipInput.value = data.nipKasie;
+                        })
+                        .catch(error => console.error(error));
+                } else {
+                    namaInput.value = '';
+                    nipInput.value = '';
+                }
+            });
+        });
+    </script> --}}
 
     <script>
         window.onscroll = function() {

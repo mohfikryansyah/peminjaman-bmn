@@ -31,11 +31,11 @@ class PeminjamController extends Controller
         //
     }
 
-    // public function getNamaNip($seksi)
-    // {
-    //     $data = Kasie::where('seksi', $seksi)->first();
-    //     return response()->json($data);
-    // }
+    public function getNamaNip($seksi)
+    {
+        $data = Kasie::where('seksi', $seksi)->first();
+        return response()->json($data);
+    }
 
     public function getKodebarang()
     {
